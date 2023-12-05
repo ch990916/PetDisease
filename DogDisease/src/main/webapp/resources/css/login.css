@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+a {
+	text-decoration: none;
+	
+}
+
+#joinButton {
+	background-color: gray;
+	color:white;
+}
+
+#loginbuttonrow{
+	padding-left: 5px;
+}
+
+.memberbutton{
+	background-color: #FFE4E3;
+}
+
+.loginCompleteTable img{
+	width:50px;
+	height:50px;
+	object-fit:cover;
+}
+
+.loginCompleteTable a{
+	color:white;
+	text-decoration: underline;
+	text-decoration-thickness: 0.1pt;
+}
