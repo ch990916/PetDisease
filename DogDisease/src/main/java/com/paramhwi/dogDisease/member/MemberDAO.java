@@ -51,12 +51,12 @@ public class MemberDAO {
 		}
 		
 		try {			
-			String name = mr.getParameter("hm_name");
-			String id = mr.getParameter("hm_id");
-			String pw = mr.getParameter("hm_pw");
+			String nickname = mr.getParameter("pm_nickname");
+			String id = mr.getParameter("pm_id");
+			String pw = mr.getParameter("pm_pw");
 			
-			String jumin1 = mr.getParameter("hm_jumin1");
-			String jumin2 = mr.getParameter("hm_jumin2");
+			String jumin1 = mr.getParameter("pm_jumin1");
+			String jumin2 = mr.getParameter("pm_jumin2");
 			Date birthday;
 			
 			if(jumin2.equals("1") || jumin2.equals("2")) {
@@ -67,24 +67,27 @@ public class MemberDAO {
 			}
 			
 			birthday = sdf.parse(jumin1);
-			String address = mr.getParameter("hm_address1") + "!" + mr.getParameter("hm_address2") + "!" + mr.getParameter("hm_address3");
-			String file = mr.getFilesystemName("hm_photo");
+			String address = mr.getParameter("pm_address1") + "!" + mr.getParameter("pm_address2") + "!" + mr.getParameter("pm_address3");
+			String mail = mr.getParameter("pm_mail");
+			String file = mr.getFilesystemName("pm_photo");
 			file = URLEncoder.encode(file, "utf-8");
 			file = file.replace("+", " ");
 			
-			m.setHm_name(name);
-			m.setHm_birthday(birthday);
-			m.setHm_id(id);
-			m.setHm_pw(pw);
-			m.setHm_address(address);
-			m.setHm_photo(file);
+			m.setPm_nickname(nickname);
+			m.setPm_birthday(birthday);
+			m.setPm_id(id);
+			m.setPm_pw(pw);
+			m.setPm_address(address);
+			m.setPm_photo(file);
+			m.setPm_mail(mail);
 			
 			ss.getMapper(MemberMapper.class).joinMember(m);
-			req.setAttribute("joinResult", "성공");
+			req.setAttribute("state", "성공");
+			System.out.println("회원가입 성공");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("뭔가 오류");
-			File f = new File(path + "/" + mr.getFilesystemName("hm_photo"));
+			System.out.println("오류");
+			File f = new File(path + "/" + mr.getFilesystemName("pm_photo"));
 			f.delete();
 		}
 	}
@@ -93,16 +96,16 @@ public class MemberDAO {
 		Member user = ss.getMapper(MemberMapper.class).getMemberByID(m);
 		
 		if (user != null) {
-			if(m.getHm_pw().equals(user.getHm_pw())) {
+			if(m.getPm_pw().equals(user.getPm_pw())) {
 				req.getSession().setAttribute("user", user);
 				return;
 			}
 			else {
-				req.setAttribute("loginResult", "비밀번호 다름");
+				req.setAttribute("state", "비밀번호 다름");
 			}
 		}
 		else {		
-			req.setAttribute("loginResult", "id없음");
+			req.setAttribute("state", "id없음");
 		}
 		return;
 	}
@@ -118,13 +121,30 @@ public class MemberDAO {
 		}
 	}
 	
+	public boolean checkAdmin(HttpServletRequest req) {
+		if(req.getSession().getAttribute("user") != null) {
+			Member user = (Member) req.getSession().getAttribute("user");
+			if( user.getPm_admin().intValue() == 4) {
+				return true;
+			}
+			else {
+				req.setAttribute("state", "권한이 없습니다.");
+				return false;
+			}
+		}
+		else {
+			req.setAttribute("state", "권한이 없습니다.");
+			return false;
+		}
+	}
+	
 	public void logout(HttpServletRequest req) {
 		req.getSession().setAttribute("user", null);
 	}
 	
 	public void splitAddress(HttpServletRequest req) {
 		Member user = (Member) req.getSession().getAttribute("user");
-		String address = user.getHm_address();
+		String address = user.getPm_address();
 		String[] addresses = address.split("!");
 		req.setAttribute("address1", addresses[0]);
 		req.setAttribute("address2", addresses[1]);
@@ -136,9 +156,9 @@ public class MemberDAO {
 			Member user = (Member)req.getSession().getAttribute("user");
 			int userPost = ss.getMapper(MemberMapper.class).getPostCount(user);
 			if(ss.getMapper(MemberMapper.class).deleteMember(user) == 1) {		
-				req.setAttribute("result", "탈퇴 성공");
+				req.setAttribute("state", "탈퇴 성공");
 				String path = req.getSession().getServletContext().getRealPath("resources/userfiles");
-				String file = URLDecoder.decode(user.getHm_photo(),"utf-8");
+				String file = URLDecoder.decode(user.getPm_photo(),"utf-8");
 				new File(path + "/" + file).delete();
 				pDAO.decreasePostCount(userPost);
 			}		
@@ -160,33 +180,35 @@ public class MemberDAO {
 					new DefaultFileRenamePolicy());
 		} catch (Exception e) {
 			e.printStackTrace();
-			req.setAttribute("joinResult", "사진 오류");
+			req.setAttribute("state", "사진 오류");
 			System.out.println("사진 오류");
 			return;
 		}
 		
 		try {	
-			String name = mr.getParameter("hm_name");
-			String id = ((Member)req.getSession().getAttribute("user")).getHm_id();
-			String pw = mr.getParameter("hm_pw");
-			String address = mr.getParameter("hm_address1") + "!" + mr.getParameter("hm_address2") + "!" + mr.getParameter("hm_address3");
-			String file = mr.getFilesystemName("hm_photo");
-			String beforeFile = ((Member)req.getSession().getAttribute("user")).getHm_photo();
+			String nickname = mr.getParameter("pm_nickname");
+			String id = ((Member)req.getSession().getAttribute("user")).getPm_id();
+			String pw = mr.getParameter("pm_pw");
+			String address = mr.getParameter("pm_address1") + "!" + mr.getParameter("pm_address2") + "!" + mr.getParameter("pm_address3");
+			String mail = mr.getParameter("pm_mail");
+			String file = mr.getFilesystemName("pm_photo");
+			String beforeFile = ((Member)req.getSession().getAttribute("user")).getPm_photo();
 			if(file != null) {
 				file = URLEncoder.encode(file, "utf-8");
 				file = file.replace("+", " ");			
 			}else {
-				file = ((Member)req.getSession().getAttribute("user")).getHm_photo();
+				file = ((Member)req.getSession().getAttribute("user")).getPm_photo();
 			}
-			m.setHm_id(id);
-			m.setHm_name(name);
-			m.setHm_pw(pw);
-			m.setHm_address(address);
-			m.setHm_photo(file);
+			m.setPm_id(id);
+			m.setPm_nickname(nickname);
+			m.setPm_pw(pw);
+			m.setPm_address(address);
+			m.setPm_photo(file);
+			m.setPm_mail(mail);
 			
 			if(ss.getMapper(MemberMapper.class).updateMember(m) == 1) {
 				System.out.println("수정 성공");
-				req.setAttribute("result", "수정 성공");
+				req.setAttribute("state", "수정 성공");
 				if(!file.equals(beforeFile)) {
 					beforeFile = URLDecoder.decode(beforeFile,"utf-8");
 					new File(path+"/"+beforeFile).delete();
@@ -196,7 +218,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("뭔가 오류");
-			File f = new File(path + "/" + mr.getFilesystemName("hm_photo"));
+			File f = new File(path + "/" + mr.getFilesystemName("pm_photo"));
 			f.delete();
 		}
 	}
@@ -204,7 +226,7 @@ public class MemberDAO {
 
 	public Members MemberGet(HttpServletRequest req) {
 		Member m = new Member();
-		m.setHm_id(req.getParameter("hm_id"));
+		m.setPm_id(req.getParameter("pm_id"));
 		List<Member> members = ss.getMapper(MemberMapper.class).getMemberByID2(m);
 		return new Members(members);
 	}

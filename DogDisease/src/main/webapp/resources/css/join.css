@@ -19,8 +19,34 @@
 .joinForm td{
 	align-items: center;
 	align-content: center;
+	text-align: center;
+}
+
+.joinForm input{
+	align-items: center;
+	align-content: center;
+	text-align: center;
 }
 
 .joinForm tr{
 	height:40px;
+}
+
+.joinTable{
+	margin-left:auto;
+	margin-right:auto;
+	padding-bottom : 100px;
+	margin-bottom:300px;
+	width:70%;
+	background-color: #F3EED9;
+	border: 2pt solid black;
+}
+
+.joinTable td{
+	align-content: center;
+}
+
+.joinTable button{
+	margin: 20px;
+	padding: 10px;
 }

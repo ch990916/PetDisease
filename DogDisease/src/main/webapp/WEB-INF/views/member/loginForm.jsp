@@ -12,9 +12,9 @@
 <td>
 <form name="loginForm" action="login" method="post" onsubmit="return loginCheck();">
 <table>
-	<tr><td><input name="hm_id" placeholder="id"></td>
+	<tr><td><input name="pm_id" placeholder="id"></td>
 	<td id="loginbuttonrow" rowspan="2"><button id="loginButton" class="memberbutton">로그인</button></td></tr>
-	<tr><td><input name="hm_pw" placeholder="pw" type="password"></td></tr>
+	<tr><td><input name="pm_pw" placeholder="pw" type="password"></td></tr>
 </table>
 </form>
 </td>

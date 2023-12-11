@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paramhwi.dogDisease.notice.NoticeMapper">
+	<insert id="writeNotice" parameterType="com.paramhwi.dogDisease.notice.Notice">
+		insert into petdisease_notice
+		values(
+			petdisease_notice_seq.nextval,
+			#{pn_title},
+			#{pn_writer},
+			#{pn_content},
+			sysdate
+		)
+	</insert>
+	<select id="searchNoticePage" parameterType="com.paramhwi.dogDisease.board.SearchInfo" resultType="com.paramhwi.dogDisease.notice.Notice">
+		select *
+		from (
+			select *
+			from (
+				select rownum as rn, pn_no, pn_title, pn_content, pn_date, pn_writer
+				from (
+					select *
+					from petdisease_notice
+					where pn_title like '%'||#{searchWord}||'%' or pn_content like '%'||#{searchWord}||'%'
+					order by pn_date desc
+				)
+			)
+			where rn&gt;=#{startNum} and rn&lt;=#{endNum}
+		), (
+			select pm_id, pm_photo, pm_nickname
+			from petdisease_member
+			where pm_id in (
+				select pn_writer
+				from (
+					select rownum as rn, pn_writer
+					from(
+						select pn_writer
+						from petdisease_notice
+						where pn_title like '%'||#{searchWord}||'%' or pn_content like '%'||#{searchWord}||'%'
+						order by pn_date desc
+					)
+				)
+				where rn &gt;= #{startNum} and rn &lt;= #{endNum}
+			)
+		)
+		where pm_id=pn_writer
+	</select>
+	<select id="searchNoticeContent" parameterType="com.paramhwi.dogDisease.notice.Notice" resultType="com.paramhwi.dogDisease.notice.Notice">
+		select * from petdisease_notice, (select pm_nickname from petdisease_member
+		where pm_id = (select pn_writer from petdisease_notice
+		where pn_no=#{pn_no}))
+		where pn_no=#{pn_no}
+	</select>
+	<select id="getAllNoticeCount" parameterType="com.paramhwi.dogDisease.board.SearchInfo" resultType="java.lang.Integer">
+		select count(*) from petdisease_notice
+		where pn_title like '%'||#{searchWord}||'%' or pn_writer like '%'||#{searchWord}||'%'
+	</select>
+</mapper>

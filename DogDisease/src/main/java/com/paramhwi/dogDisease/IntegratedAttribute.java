@@ -2,7 +2,7 @@ package com.paramhwi.dogDisease;
 
 public class IntegratedAttribute {
 	private int postNumInPage;
-	private int fileNumInPage;
+	private int noticeNumInPage;
 
 
 	public IntegratedAttribute() {
@@ -10,10 +10,10 @@ public class IntegratedAttribute {
 	}
 	
 
-	public IntegratedAttribute(int postNumInPage, int fileNumInPage) {
+	public IntegratedAttribute(int postNumInPage, int noticeNumInPage) {
 		super();
 		this.postNumInPage = postNumInPage;
-		this.fileNumInPage = fileNumInPage;
+		this.noticeNumInPage = noticeNumInPage;
 	}
 
 
@@ -26,13 +26,13 @@ public class IntegratedAttribute {
 	}
 
 
-	public int getFileNumInPage() {
-		return fileNumInPage;
+	public int getNoticeNumInPage() {
+		return noticeNumInPage;
 	}
 
 
-	public void setFileNumInPage(int fileNumInPage) {
-		this.fileNumInPage = fileNumInPage;
+	public void setNoticeNumInPage(int noticeNumInPage) {
+		this.noticeNumInPage = noticeNumInPage;
 	}
 	
 }

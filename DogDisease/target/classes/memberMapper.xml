@@ -2,39 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.paramhwi.dogDisease.member.MemberMapper">
 	<insert id="joinMember" parameterType="com.paramhwi.dogDisease.member.Member">
-		insert into homepetcare_member
+		insert into petdisease_member
 		values(
-			#{hm_id},
-			#{hm_pw},
-			#{hm_name},
-			#{hm_address},
-			#{hm_birthday},
-			#{hm_photo}
+			#{pm_id},
+			#{pm_pw},
+			#{pm_nickname},
+			#{pm_address},
+			#{pm_birthday},
+			#{pm_photo},
+			#{pm_mail},
+			0
 		)
 	</insert>
 	<select id="getMemberByID" parameterType="com.paramhwi.dogDisease.member.Member" resultType="com.paramhwi.dogDisease.member.Member">
-		select * from homepetcare_member
-		where hm_id=#{hm_id}
+		select * from petdisease_member
+		where pm_id=#{pm_id}
 	</select>
 	<select id="getMemberByID2" parameterType="com.paramhwi.dogDisease.member.Member" resultType="com.paramhwi.dogDisease.member.Member">
-		select * from homepetcare_member
-		where hm_id=#{hm_id}
+		select * from petdisease_member
+		where pm_id=#{pm_id}
 	</select>
 	<delete id="deleteMember" parameterType="com.paramhwi.dogDisease.member.Member">
-		delete from homepetcare_member
-		where hm_id=#{hm_id}
+		delete from petdisease_member
+		where pm_id=#{pm_id}
 	</delete>
 	<update id="updateMember" parameterType="com.paramhwi.dogDisease.member.Member">
-		update homepetcare_member
-		set hm_name=#{hm_name},
-			hm_pw=#{hm_pw},
-			hm_address=#{hm_address},
-			hm_photo=#{hm_photo}
-		where hm_id=#{hm_id}
+		update petdisease_member
+		set pm_nickname=#{pm_nickname},
+			pm_pw=#{pm_pw},
+			pm_address=#{pm_address},
+			pm_photo=#{pm_photo},
+			pm_mail=#{pm_mail}
+		where pm_id=#{pm_id}
 	</update>
 	<select id="getPostCount" parameterType="com.paramhwi.dogDisease.member.Member" resultType="java.lang.Integer">
 		select count(*)
 		from homepetcare_post
-		where hp_writer=#{hm_id}
+		where hp_writer=#{pm_id}
 	</select>
 </mapper>

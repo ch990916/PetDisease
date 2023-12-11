@@ -1,14 +1,15 @@
 function joinCheck(){
-	var nameField = document.joinForm.hm_name;
-	var jumin1Field = document.joinForm.hm_jumin1;
-	var jumin2Field = document.joinForm.hm_jumin2;
-	var idField = document.joinForm.hm_id;
-	var pwField = document.joinForm.hm_pw;
-	var pwckField = document.joinForm.hm_pwck;
-	var address1Field = document.joinForm.hm_address1;
-	var address2Field = document.joinForm.hm_address2;
-	var address3Field = document.joinForm.hm_address3;
-	var photoField = document.joinForm.hm_photo;
+	var nameField = document.joinForm.pm_name;
+	var jumin1Field = document.joinForm.pm_jumin1;
+	var jumin2Field = document.joinForm.pm_jumin2;
+	var idField = document.joinForm.pm_id;
+	var pwField = document.joinForm.pm_pw;
+	var pwckField = document.joinForm.pm_pwck;
+	var address1Field = document.joinForm.pm_address1;
+	var address2Field = document.joinForm.pm_address2;
+	var address3Field = document.joinForm.pm_address3;
+	var photoField = document.joinForm.pm_photo;
+	var mailField = document.joinForm.pm_mail;
 	
 	
 	if(emptyCheck(nameField)){
@@ -58,6 +59,13 @@ function joinCheck(){
 		alert("주소 에러");
 		address3Field.value = "";
 		address1Field.focus();		
+		return false;
+	}
+	
+	if(emptyCheck(mailField)){
+		alert("메일 에러");
+		mailField.value = "";
+		mailField.focus();		
 		return false;
 	}
 	
