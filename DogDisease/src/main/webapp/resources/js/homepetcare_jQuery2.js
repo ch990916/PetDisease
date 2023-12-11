@@ -11,7 +11,7 @@ function revealMenuEvent(){
 function joinIdKeyEvent(){
 	$("#joinId").keyup(function(e){	
 		var id = $(this).val();
-		$.getJSON("member.get?hm_id="+id, function(data){
+		$.getJSON("member.get?pm_id="+id, function(data){
 			if(data.member[0] == null){
 				$("#joinId").css("color", "black");
 			} else{
@@ -22,12 +22,12 @@ function joinIdKeyEvent(){
 }
 
 function addressSearchEvent(){
-	$("#hm_address1 , #hm_address2").click(function(){
+	$("#pm_address1 , #pm_address2").click(function(){
 		new daum.Postcode({
 	        oncomplete: function(data) {
 	        	 var roadAddr = data.roadAddress;
-	        	document.getElementById('hm_address1').value = data.zonecode;
-                document.getElementById("hm_address2").value = roadAddr;
+	        	document.getElementById("pm_address1").value = data.zonecode;
+                document.getElementById("pm_address2").value = roadAddr;
 	        }
 	    }).open();
 	})
@@ -36,7 +36,7 @@ function addressSearchEvent(){
 
 
 $(function(){
-	revealMenuEvent();
+	//revealMenuEvent();
 	joinIdKeyEvent();
-	addressSearchEvent()
+	addressSearchEvent();
 });

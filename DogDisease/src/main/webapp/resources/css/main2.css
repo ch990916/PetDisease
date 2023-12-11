@@ -28,9 +28,8 @@ body{
 #idxBgTbl {
 	width : 100vw;
 	background-color: #F16971;
-	top:-70px;	
-	position:fixed;
-	transition:all 0.3s ease-out;
+	top: 0px;
+	height:70px;
 }
 
 #idxBgTblArea{

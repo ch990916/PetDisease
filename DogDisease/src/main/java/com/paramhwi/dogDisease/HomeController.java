@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.paramhwi.dogDisease.board.PostDAO;
+import com.paramhwi.dogDisease.member.Member;
 import com.paramhwi.dogDisease.member.MemberDAO;
 
 /**

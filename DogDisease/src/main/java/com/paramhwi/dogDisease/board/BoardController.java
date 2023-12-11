@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.paramhwi.dogDisease.TokenGenerator;
+import com.paramhwi.dogDisease.member.Member;
 import com.paramhwi.dogDisease.member.MemberDAO;
 
 @Controller
@@ -82,7 +83,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/reply.write", method = RequestMethod.GET)
-	public String replyWrite(PostReply pr ,HttpServletRequest req) {	
+	public String replyWrite(Member m,PostReply pr ,HttpServletRequest req) {	
 		if(mDAO.checkLogin(req)) {
 			pDAO.writeReply(pr, req);
 		}

@@ -41,7 +41,7 @@ public class PostDAO {
 			return;
 		}
 		Member user = (Member) req.getSession().getAttribute("user");
-		p.setHp_writer(user.getHm_id());
+		p.setHp_writer(user.getPm_id());
 		if(ss.getMapper(PostMapper.class).writePost(p) == 1) {
 			req.setAttribute("result", "글쓰기 성공");
 			allPostCount++;

@@ -1,10 +1,12 @@
-create table homepetcare_member(
-	hm_id varchar2(10 char) primary key,
-	hm_pw varchar2(10 char) not null,
-	hm_name varchar2(10 char) not null,
-	hm_address varchar2(300 char) not null,
-	hm_birthday date not null,
-	hm_photo varchar2(300 char) not null
+create table petdisease_member(
+	pm_id varchar2(20 char) primary key,
+	pm_pw varchar2(20 char) not null,
+	pm_nickname varchar2(20 char) not null,
+	pm_address varchar2(300 char) not null,
+	pm_birthday date not null,
+	pm_photo varchar2(300 char) not null,
+	pm_mail varchar2(300 char) not null,
+	pm_admin number(2) not null
 );
 
 create table homepetcare_post(
@@ -84,5 +86,7 @@ from (
 )
 where hm_id=hp_writer;
 
+select * from petdisease_member;
 
+update petdisease_member set pm_admin=0 where pm_id='asdf1234';
 
