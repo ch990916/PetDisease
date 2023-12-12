@@ -1,5 +1,5 @@
 function joinCheck(){
-	var nameField = document.joinForm.pm_name;
+	var nameField = document.joinForm.pm_nickname;
 	var jumin1Field = document.joinForm.pm_jumin1;
 	var jumin2Field = document.joinForm.pm_jumin2;
 	var idField = document.joinForm.pm_id;
@@ -162,32 +162,4 @@ function writeCheck(){
 		return false;
 	}
 	return true;
-}
-
-function postReplyWriteCheck(){
-	var contentField = document.postReplyWriteForm.hpr_content;
-	
-	if(emptyCheck(contentField)){
-		alert("댓글을 입력하세요");
-		contentField.value = "";
-		contentField.focus();		
-		return false;
-	}
-}
-
-function uploadCheck(d){
-	var titleField = d.hd_title;
-	var fileField = d.hd_file;
-	if(emptyCheck(titleField)){
-		alert("제목을 입력하세요");
-		titleField.value = "";
-		titleField.focus();		
-		return false;
-	}
-	if(emptyCheck(fileField)){
-		alert("파일을 등록하세요");
-		fileField.value = "";
-		fileField.focus();		
-		return false;
-	}
 }

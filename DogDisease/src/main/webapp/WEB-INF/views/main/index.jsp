@@ -11,6 +11,7 @@
 <link href="resources/css/login.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/join.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/board.css" rel="stylesheet" type="text/css" />
+<link href="resources/css/notice.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script type = "text/javascript" src="resources/js/myvalidchecker.js"></script>
 <script type = "text/javascript" src="resources/js/check.js"></script>
@@ -28,8 +29,8 @@
 		<td class="title"><a href="index">&nbsp;펫홈케어</a></td>
 		<th class="menu">진단&nbsp;<span class="material-symbols-outlined">home_health</span></th>
 		<th class="menu"><a href="notice.board.go?page=1">공지사항</a></th>
-		<th class="menu"><a href="dataroom.go">자료실</a></th>
-		<th class="menu">메뉴4</th>
+		<th class="menu"><a href="board.go?page=1">게시판</a></th>
+		<th class="menu"><a href="map.go">병원찾기</a></th>
 		<td class="login" align="right"><jsp:include page="${loginPage }"></jsp:include></td>
 		<td>${joinResult }</td>
 		</tr>

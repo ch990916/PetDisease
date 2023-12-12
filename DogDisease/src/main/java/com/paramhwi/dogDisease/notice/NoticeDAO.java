@@ -91,5 +91,30 @@ public class NoticeDAO {
 			req.getSession().setAttribute("searchWord", req.getParameter("searchWord"));
 		}
 	}
+	
+	public void noticeDelete(HttpServletRequest req) {
+		BigDecimal no = new BigDecimal(req.getParameter("no"));
+		Notice tmp = new Notice();
+		tmp.setPn_no(no);
+		if(ss.getMapper(NoticeMapper.class).deleteNotice(tmp) == 1) {
+			req.setAttribute("state", "삭제성공");
+		}
+	}
+	
+	public void modifyNotice(Notice n, HttpServletRequest req) {
+		String token = req.getParameter("token");
+		String lastToken = (String) req.getSession().getAttribute("lastToken");
+		if(lastToken != null && lastToken.equals(token)) {
+			req.setAttribute("state", "공지사항 수정 실패");
+			System.out.println("공지사항 수정 실패(토큰 불일치)");
+			return;
+		}
+		Member user = (Member) req.getSession().getAttribute("user");
+		n.setPn_writer(user.getPm_id());
+		if(ss.getMapper(NoticeMapper.class).modifyNotice(n) == 1) {
+			req.setAttribute("state", "공지사항 수정 성공");
+			req.getSession().setAttribute("lastToken", token);
+		}
+	}
 
 }

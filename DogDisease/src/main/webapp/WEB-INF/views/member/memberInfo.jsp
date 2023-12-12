@@ -28,7 +28,7 @@
 	<tr><td><input name="pm_photo" type="file"></td></tr></table>
 	<button>수정</button>
 	</form>
-	<button onclick="return deleteCheck();">탈퇴</button>
+	<button onclick="return withdrawCheck();">탈퇴</button>
 	
 </div>
 </body>

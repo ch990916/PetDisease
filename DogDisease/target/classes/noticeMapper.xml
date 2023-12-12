@@ -54,4 +54,16 @@
 		select count(*) from petdisease_notice
 		where pn_title like '%'||#{searchWord}||'%' or pn_writer like '%'||#{searchWord}||'%'
 	</select>
+	<delete id="deleteNotice" parameterType="com.paramhwi.dogDisease.notice.Notice">
+		delete from petdisease_notice
+		where pn_no=#{pn_no}
+	</delete>
+	<update id="modifyNotice" parameterType="com.paramhwi.dogDisease.notice.Notice">
+		update petdisease_notice
+		set pn_title=#{pn_title},
+			pn_writer=#{pn_writer},
+			pn_content=#{pn_content},
+			pn_date=sysdate
+		where pn_no=#{pn_no}
+	</update>
 </mapper>
