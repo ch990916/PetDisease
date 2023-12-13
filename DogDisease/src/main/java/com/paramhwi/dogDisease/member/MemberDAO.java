@@ -1,6 +1,7 @@
 package com.paramhwi.dogDisease.member;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -40,7 +41,7 @@ public class MemberDAO {
 			 mr = new MultipartRequest(
 					req, 
 					path, 
-					10*1024*1024, 
+					500*1024*1024, 
 					"utf-8", 
 					new DefaultFileRenamePolicy());
 		} catch (Exception e) {
@@ -86,7 +87,7 @@ public class MemberDAO {
 			System.out.println("회원가입 성공");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("오류");
+			System.out.println("가입오류");
 			File f = new File(path + "/" + mr.getFilesystemName("pm_photo"));
 			f.delete();
 		}
@@ -97,6 +98,10 @@ public class MemberDAO {
 		
 		if (user != null) {
 			if(m.getPm_pw().equals(user.getPm_pw())) {
+				if(user.getPm_admin().intValue() < 1) {
+					req.setAttribute("state", "로그인 금지. 관리자 문의 요망");
+					return;
+				}
 				req.getSession().setAttribute("user", user);
 				return;
 			}
@@ -112,8 +117,14 @@ public class MemberDAO {
 
 	public boolean checkLogin(HttpServletRequest req) {
 		if(req.getSession().getAttribute("user") != null) {
-			req.setAttribute("loginPage", "../member/loginComplete.jsp");
-			return true;
+			if(((Member)req.getSession().getAttribute("user")).getPm_admin().intValue() > 3) {
+				req.setAttribute("loginPage", "../member/loginComplete_admin.jsp");
+				return true;
+			}
+			else {
+				req.setAttribute("loginPage", "../member/loginComplete.jsp");
+				return true;
+			}
 		}
 		else {	
 			req.setAttribute("loginPage", "../member/loginForm.jsp");
@@ -175,7 +186,7 @@ public class MemberDAO {
 			 mr = new MultipartRequest(
 					req, 
 					path, 
-					10*1024*1024, 
+					500*1024*1024, 
 					"utf-8", 
 					new DefaultFileRenamePolicy());
 		} catch (Exception e) {
@@ -218,6 +229,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("뭔가 오류");
+			req.setAttribute("state", "DB오류");
 			File f = new File(path + "/" + mr.getFilesystemName("pm_photo"));
 			f.delete();
 		}
@@ -229,6 +241,36 @@ public class MemberDAO {
 		m.setPm_id(req.getParameter("pm_id"));
 		List<Member> members = ss.getMapper(MemberMapper.class).getMemberByID2(m);
 		return new Members(members);
+	}
+	
+	public void adminMemberGet(HttpServletRequest req) {
+		List<Member> members = ss.getMapper(MemberMapper.class).adminMemberGet();
+		req.setAttribute("members", members);
+	}
+	
+	public void adminMemberInfo(HttpServletRequest req) {
+		Member m = new Member();
+		m.setPm_id(req.getParameter("id"));
+		List<Member> members = ss.getMapper(MemberMapper.class).getMemberByID2(m);
+		req.setAttribute("members", members);
+	}
+	
+	public void changeAdmin(HttpServletRequest req) {
+		String pm_id = req.getParameter("pm_id");
+		Integer pm_admin = Integer.parseInt(req.getParameter("pm_admin"));
+		
+		Member m = new Member();
+		m.setPm_id(pm_id);
+		m.setPm_admin(new BigDecimal(pm_admin));
+		
+		if(ss.getMapper(MemberMapper.class).updateAdmin(m) == 1) {
+			System.out.println("Admin Updated");
+			req.setAttribute("state", "Admin Updated");
+		}
+		else {
+			System.out.println("Update Failed");
+			req.setAttribute("state", "Update Failed");
+		}
 	}
 	
 }

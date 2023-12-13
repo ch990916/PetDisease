@@ -11,7 +11,7 @@
 			#{pm_birthday},
 			#{pm_photo},
 			#{pm_mail},
-			0
+			3
 		)
 	</insert>
 	<select id="getMemberByID" parameterType="com.paramhwi.dogDisease.member.Member" resultType="com.paramhwi.dogDisease.member.Member">
@@ -40,4 +40,13 @@
 		from homepetcare_post
 		where hp_writer=#{pm_id}
 	</select>
+	<select id="adminMemberGet" resultType="com.paramhwi.dogDisease.member.Member">
+		select * from petdisease_member
+		order by pm_admin desc, pm_id
+	</select>
+	<update id="updateAdmin" parameterType="com.paramhwi.dogDisease.member.Member">
+		update petdisease_member
+		set pm_admin=#{pm_admin}
+		where pm_id=#{pm_id}
+	</update>
 </mapper>

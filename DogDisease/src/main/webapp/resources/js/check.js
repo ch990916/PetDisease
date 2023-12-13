@@ -80,8 +80,8 @@ function joinCheck(){
 }
 
 function loginCheck(){
-	var idField = document.loginForm.hm_id;
-	var pwField = document.loginForm.hm_pw;
+	var idField = document.loginForm.pm_id;
+	var pwField = document.loginForm.pm_pw;
 	
 	if(emptyCheck(idField)){
 		alert("id를 입력하세요");
@@ -98,14 +98,14 @@ function loginCheck(){
 	return true;
 }
 
-function updateCheck(){
-	var nameField = document.memberInfoForm.hm_name;
-	var pwField = document.memberInfoForm.hm_pw;
-	var pwckField = document.memberInfoForm.hm_pwck;
-	var address1Field = document.memberInfoForm.hm_address1;
-	var address2Field = document.memberInfoForm.hm_address2;
-	var address3Field = document.memberInfoForm.hm_address3;
-	var photoField = document.memberInfoForm.hm_photo;
+function memberUpdateCheck(){
+	var nameField = document.memberInfoForm.pm_nickname;
+	var pwField = document.memberInfoForm.pm_pw;
+	var pwckField = document.memberInfoForm.pm_pwck;
+	var address1Field = document.memberInfoForm.pm_address1;
+	var address2Field = document.memberInfoForm.pm_address2;
+	var address3Field = document.memberInfoForm.pm_address3;
+	var photoField = document.memberInfoForm.pm_photo;
 	
 	if(emptyCheck(nameField)){
 		alert("이름 에러");
@@ -144,9 +144,9 @@ function updateCheck(){
 	return true;
 }
 
-function writeCheck(){
-	var titleField = document.postWriteForm.hm_name;
-	var contentField = document.postWriteForm.hm_pw;
+function noticeWriteCheck(){
+	var titleField = document.noticeWriteForm.pn_title;
+	var contentField = document.noticeWriteForm.pn_content;
 	
 	if(emptyCheck(titleField)){
 		alert("제목을 입력하세요");
@@ -161,5 +161,10 @@ function writeCheck(){
 		contentField.focus();		
 		return false;
 	}
+	return true;
+}
+
+function noticeDeleteCheck(){
+	confirm("삭제하시겠습니까?");
 	return true;
 }

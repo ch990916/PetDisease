@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="areaTable">
-	<form action="notice.board.modify" name="postWriteForm" onsubmit="return writeCheck();" method="POST">
+	<form action="notice.board.modify" name="noticeWriteForm" onsubmit="return noticeWriteCheck();" method="POST">
 	<input type="hidden" name="token" value="${token }" readonly="true">
 	<input type="hidden" name="pn_no" value="${notice.pn_no }" readonly="true">
 		<table id="postWriteTable">

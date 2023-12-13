@@ -14,5 +14,9 @@ public interface MemberMapper {
 	public abstract int updateMember(Member m);
 	
 	public abstract int getPostCount(Member m);
+	
+	public abstract List<Member> adminMemberGet();
+	
+	public abstract int updateAdmin(Member m);
 
 }

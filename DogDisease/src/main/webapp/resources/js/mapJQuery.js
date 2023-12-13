@@ -61,7 +61,6 @@ var map = null;
 		})
 		
 		$("#buildingInput").change(function(e){
-			alert();
 				var search = $("#buildingInput").val();
 				$.ajax({
 					url : "https://dapi.kakao.com/v2/local/search/keyword",
@@ -73,15 +72,18 @@ var map = null;
 			            before.setRequestHeader("Authorization","KakaoAK 1ddaafaa30e0117ca72585e7030f5477");
 			        },
 					success : function(result){
-						$("#mainTr").empty();
+						$("#locationCard").empty();
 						$.each(result.documents, function(i, b){
-							var nameTd = $("<td width='100px' height='100px'></td>").text(b.place_name);
+							var nameTd = $("<td width='150px' height='100px'></td>").text(b.place_name);
 							var nameTr = $("<tr></tr>").append(nameTd);
-							var addrTd = $("<td width='100px' height='100px'></td>").text(b.address_name);
+							var addrTd = $("<td width='150px' height='100px'></td>").text(b.address_name);
 							var addrTr = $("<tr></tr>").append(addrTd);
-							var table = $("<table border='1'></table>").append(nameTr, addrTr).attr("onclick","moveMap("+b.y+","+b.x+");");
+							var table = $("<table border='1'></table>").append(nameTr, addrTr).attr("onclick","moveMap("+b.y+","+b.x+");").css("background-color","beige").css("margin","5px");
 							var subTd = $("<td></td>").append(table);
-							$("#mainTr").append(subTd);
+							$("#locationCard").append(subTd);
+							if(i % 5 == 4){
+								$("#locationCard").append("<br>");
+							}
 						})
 					}
 				})

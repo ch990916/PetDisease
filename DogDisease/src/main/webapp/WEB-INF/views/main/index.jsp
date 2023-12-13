@@ -32,7 +32,6 @@
 		<th class="menu"><a href="board.go?page=1">게시판</a></th>
 		<th class="menu"><a href="map.go">병원찾기</a></th>
 		<td class="login" align="right"><jsp:include page="${loginPage }"></jsp:include></td>
-		<td>${joinResult }</td>
 		</tr>
 	</table></td></tr>
 	</table>

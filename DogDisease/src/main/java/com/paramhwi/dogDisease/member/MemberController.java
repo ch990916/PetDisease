@@ -83,4 +83,27 @@ public class MemberController {
 	public @ResponseBody Members memberGet(Member m, HttpServletRequest req) {	
 		return mDAO.MemberGet(req);
 	}
+	
+	@RequestMapping(value = "/admin.memberlist", method = RequestMethod.GET)
+	public String memberList(HttpServletRequest req) {
+		mDAO.checkLogin(req);
+		mDAO.adminMemberGet(req);
+		req.setAttribute("contentPage", "../member/memberList.jsp");
+		return "main/index";
+	}
+	
+	@RequestMapping(value = "/admin.memberInfo", method = RequestMethod.GET)
+	public String memberInfoAdmin(HttpServletRequest req) {
+		mDAO.checkLogin(req);
+		mDAO.adminMemberInfo(req);
+		req.setAttribute("contentPage", "../member/memberInfoAdmin.jsp");
+		return "main/index";
+	}
+	
+	@RequestMapping(value = "/admin.changeAdmin", method = RequestMethod.POST)
+	public String changeAdmin(HttpServletRequest req) {
+		mDAO.checkLogin(req);
+		mDAO.changeAdmin(req);
+		return memberList(req);
+	}
 }

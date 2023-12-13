@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="areaTable">
-	<form action="notice.write.reg" name="postWriteForm" onsubmit="return writeCheck();" method="POST">
+	<form action="notice.write.reg" name="noticeWriteForm" onsubmit="return noticeWriteCheck();" method="POST">
 	<input type="hidden" name="token" value="${token }" readonly="true">
 		<table id="postWriteTable">
 			<tr><td align="center"><input placeholder="제목" name="pn_title"></td></tr>

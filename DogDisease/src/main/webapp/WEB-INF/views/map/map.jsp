@@ -10,20 +10,21 @@
 </head>
 <body>
 지도
-<table>
+<table align="center">
 <tr><td><div id="map" style="width:500px;height:400px;"></div></td>
 <td><div id="roadview" style="width:500px;height:300px;"></div></td></tr>
 <tr><td><input id="locationInput"></td>
 <td>
 <select id="buildingInput">
-<option value="병원">병원</option>
-<option value="other">other</option>
+<option value="" disabled selected>선택--------------</option>
+<option value="동물병원">동물병원</option>
+<option value="펫샵">펫샵</option>
 </select>
 </td></tr>
 </table>
-<table>
-<tr id="mainTr"></tr>
-</table>
+<div align="center" id="locationCard">
+
+</div>
 
 </body>
 </html>

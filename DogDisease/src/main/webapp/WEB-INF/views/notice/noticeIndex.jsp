@@ -31,7 +31,7 @@
 			<table>
 			 <tr>
 			 	<c:forEach var="p" begin="1" end="${pageCount}">
-			 	<td><a href="board.change?page=${p }&searchWord=${searchWord }">${p }</a></td>
+			 	<td><a href="notice.board.change?page=${p }&searchWord=${searchWord }">${p }</a></td>
 			 	</c:forEach>
 			 	
 			 </tr>

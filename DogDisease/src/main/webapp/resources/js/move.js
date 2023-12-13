@@ -6,8 +6,3 @@ function withdrawCheck(){
 function modifyNotice(){
 	return location.href="notice.board.modify.go";
 }
-
-function noticeDeleteCheck(){
-	confirm("삭제하시겠습니까?");
-	return true;
-}

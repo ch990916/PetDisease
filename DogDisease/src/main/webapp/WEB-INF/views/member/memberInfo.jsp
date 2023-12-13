@@ -14,7 +14,7 @@
 <div class="joinTable">
 	<h1 align="center">회원정보</h1>
 	<table class="joinForm" align="center" border="3">
-	<form  name="memberInfoForm" onsubmit="return updateCheck();" action="member.update" method="post" enctype="multipart/form-data">
+	<form  name="memberInfoForm" onsubmit="return memberUpdateCheck();" action="member.update" method="post" enctype="multipart/form-data">
 	<tr><th>이름</th><td><input name="pm_nickname" value="${sessionScope.user.pm_nickname }"></td></tr>
 	<tr><th>생년월일</th><td><fmt:formatDate value="${sessionScope.user.pm_birthday }" /></td></tr>
 	<tr><th>id</th><td><div name="pm_id">${sessionScope.user.pm_id }</div></td></tr>
