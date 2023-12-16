@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.paramhwi.dogDisease.board.PostMapper">
 	<insert id="writePost" parameterType="com.paramhwi.dogDisease.board.Post">
-		insert into homepetcare_post
+		insert into petdisease_post
 		values(
-			homepetcare_post_seq.nextval,
-			#{hp_title},
-			#{hp_writer},
-			#{hp_content},
+			petdisease_post_seq.nextval,
+			#{pp_content},
+			#{pp_writer},
+			#{pp_picture},
 			sysdate
 		)
 	</insert>
@@ -16,55 +16,71 @@
 		from (
 			select *
 			from (
-				select rownum as rn, hp_no, hp_title, hp_content, hp_date, hp_writer
+				select rownum as rn, pp_no, pp_picture, pp_content, pp_date, pp_writer
 				from (
 					select *
-					from homepetcare_post
-					where hp_title like '%'||#{searchWord}||'%' or hp_writer like '%'||#{searchWord}||'%'
-					order by hp_date desc
+					from petdisease_post
+					where pp_content like '%'||#{searchWord}||'%' or pp_writer like '%'||#{searchWord}||'%'
+					order by pp_date desc
 				)
 			)
 			where rn&gt;=#{startNum} and rn&lt;=#{endNum}
 		), (
-			select hm_id, hm_photo
-			from homepetcare_member
-			where hm_id in (
-				select hp_writer
+			select pm_id, pm_photo, pm_nickname
+			from petdisease_member
+			where pm_id in (
+				select pp_writer
 				from (
-					select rownum as rn, hp_writer
+					select rownum as rn, pp_writer
 					from(
-						select hp_writer
-						from homepetcare_post
-						where hp_title like '%'||#{searchWord}||'%' or hp_writer like '%'||#{searchWord}||'%'
-						order by hp_date desc
+						select pp_writer
+						from petdisease_post
+						where pp_content like '%'||#{searchWord}||'%' or pp_writer like '%'||#{searchWord}||'%'
+						order by pp_date desc
 					)
 				)
 				where rn &gt;= #{startNum} and rn &lt;= #{endNum}
-			)
+			
 		)
-		where hm_id=hp_writer
+		where pm_id=pp_writer
 	</select>
+	
+	<select id="getReply" parameterType="com.paramhwi.dogDisease.board.SearchInfo" resultType="com.paramhwi.dogDisease.board.PostReply">
+		select *
+		from petdisease_reply
+		where pr_pp_no=#{pp_no}
+	</select>
+	
 	<select id="searchContent" parameterType="com.paramhwi.dogDisease.board.Post" resultType="com.paramhwi.dogDisease.board.Post">
-		select * from homepetcare_post
-		where hp_no=#{hp_no}
+		select * from petdisease_post
+		where pp_no=#{pp_no}
 	</select>
+	
 	<select id="getAllPostCount" parameterType="com.paramhwi.dogDisease.board.SearchInfo" resultType="java.lang.Integer">
-		select count(*) from homepetcare_post
-		where hp_title like '%'||#{searchWord}||'%' or hp_writer like '%'||#{searchWord}||'%'
+		select count(*) from petdisease_post
+		where pp_content like '%'||#{searchWord}||'%' or pp_writer like '%'||#{searchWord}||'%'
 	</select>
+	
 	<insert id="writeReply" parameterType="com.paramhwi.dogDisease.board.PostReply">
-		insert into homepetcare_post_reply
+		insert into petdisease_reply
 		values(
-			homepetcare_post_reply_seq.nextval,
-			#{hpr_hp_no},
-			#{hpr_writer},
-			#{hpr_content},
+			petdisease_reply_seq.nextval,
+			#{pr_pp_no},
+			#{pr_writer},
+			#{pr_content},
 			sysdate
 		)
 	</insert>
-	<select id="getReply" parameterType="com.paramhwi.dogDisease.board.Post" resultType="com.paramhwi.dogDisease.board.PostReply">
-		select *
-		from homepetcare_post_reply
-		where hpr_hp_no=#{hp_no}
-	</select>
+	
+	
+	<delete id="deletePost" parameterType="com.paramhwi.dogDisease.board.Post">
+		delete from petdisease_post
+		where pp_no=#{pp_no}
+	</delete>
+	
+	<update id="updatePost" parameterType="com.paramhwi.dogDisease.board.Post">
+		update petdisease_post
+		set pp_content=#{pp_content}, pp_picture=#{pp_picture}
+		where pp_no=#{pp_no}
+	</update>
 </mapper>

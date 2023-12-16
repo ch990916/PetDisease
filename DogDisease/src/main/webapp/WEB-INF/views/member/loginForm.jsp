@@ -5,16 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-<form name="loginForm" action="login" method="post" onsubmit="return loginCheck();">
-<div>
-	<div><input name="pm_id" placeholder="id"></div>
-	<div><input name="pm_pw" placeholder="pw" type="password"></div>
-	<div><button id="loginButton" class="memberbutton">로그인</button>
+	<div class="bg-gray-200 grid grid-cols-2">
+		<div class="bg-gray-300 col-auto">
+		<form name="loginForm" action="login" method="post" onsubmit="return loginCheck();">
+			<div>
+				<input name="pm_id" placeholder="id">
+				<input name="pm_pw" placeholder="pw" type="password">
+				<button id="loginButton" class="memberbutton">로그인</button>
+			</div>
+		</form>
+		</div>
+		<div class="col-auto">
+			<button class="memberbutton" onclick="location.href='join'">회원가입</button>
+		</div>
 	</div>
-</div>
-</form>
-		<button class="memberbutton" onclick="location.href='join'">회원가입</button>
 </body>
 </html>

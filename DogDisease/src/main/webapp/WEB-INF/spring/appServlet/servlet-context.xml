@@ -45,6 +45,7 @@
 			<beans:list>
 				<beans:value>classpath:memberMapper.xml</beans:value>
 				<beans:value>classpath:postMapper.xml</beans:value>
+				<beans:value>classpath:noticeMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -57,6 +58,7 @@
 	<beans:bean id="ia" class="com.paramhwi.dogDisease.IntegratedAttribute">
 		<beans:constructor-arg name="postNumInPage" value="10"></beans:constructor-arg>
 		<beans:constructor-arg name="fileNumInPage" value="10"></beans:constructor-arg>
+		<beans:constructor-arg name="noticeNumInPage" value="10"></beans:constructor-arg>
 	</beans:bean>
 
 </beans:beans>

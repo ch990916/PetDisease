@@ -33,7 +33,6 @@ public class MemberDAO {
 	}
 	public void join(Member m, HttpServletRequest req) {
 		String path = req.getSession().getServletContext().getRealPath("resources/userfiles");
-		System.out.println(path);
 		MultipartRequest mr = null;
 		try {
 			 mr = new MultipartRequest(
@@ -113,7 +112,7 @@ public class MemberDAO {
 			return true;
 			}
 		}
-		else {	
+		else {
 			req.setAttribute("loginPage", "../member/loginForm.jsp");
 			return false;
 		}
@@ -141,7 +140,6 @@ public class MemberDAO {
 				String path = req.getSession().getServletContext().getRealPath("resources/userfiles");
 				String file = URLDecoder.decode(user.getPm_photo(),"utf-8");
 				new File(path + "/" + file).delete();
-				pDAO.decreasePostCount(userPost);
 			}		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -156,7 +154,7 @@ public class MemberDAO {
 			 mr = new MultipartRequest(
 					req, 
 					path, 
-					10*1024*1024, 
+					100*1024*1024, 
 					"utf-8", 
 					new DefaultFileRenamePolicy());
 		} catch (Exception e) {

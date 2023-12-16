@@ -7,16 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
+	<div class="border-solid border-4 border-black">
 		<c:forEach var="m" items="${members }">
-		<tr>
-			<td><a href="admin.memberInfo?id=${m.pm_id }">${m.pm_id }</a></td>
-			<td>${m.pm_nickname }</td>
-			<td>${m.pm_address }</td>
-			<td>${m.pm_mail }</td>		
-		</tr>
+		<div>
+			<a href="admin.memberInfo?id=${m.pm_id }">${m.pm_id }</a>
+			${m.pm_nickname }
+			${m.pm_address }
+			${m.pm_mail }		
+		</div>
 		</c:forEach>
 
-	</table>
+	</div>
 </body>
 </html>

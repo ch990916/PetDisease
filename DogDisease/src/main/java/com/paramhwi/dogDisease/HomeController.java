@@ -39,10 +39,8 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest req) {
 		if(firstReq) {
-			pDAO.getAllPostCount("");
 			firstReq = false;
 		}
-		pDAO.searchSessionReset(req);
 		mDAO.checkLogin(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "main/index";

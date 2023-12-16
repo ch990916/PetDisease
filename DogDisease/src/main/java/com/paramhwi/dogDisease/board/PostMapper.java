@@ -14,4 +14,8 @@ public interface PostMapper {
 	public abstract int writeReply(PostReply pr);
 	
 	public abstract List<PostReply> getReply(Post p);
+	
+	public abstract int deletePost(Post p);
+	
+	public abstract int updatePost(Post p);
 }

@@ -123,24 +123,16 @@ function updateCheck(){
 	return true;
 }
 
-function writeCheck(){
-	var titleField = document.postWriteForm.pm_name;
-	var contentField = document.postWriteForm.pm_pw;
+function WriteCheck(){
+	var picture = document.postWriteForm.pp_picture;
+	var content = document.postWriteForm.pp_content;
 	
-	if(emptyCheck(titleField)){
-		alert("제목을 입력하세요");
-		titleField.value = "";
-		titleField.focus();		
+	if(emptyCheck(picture)){
+		alert("사진이 반드시 포함되어야 합니다.");		
 		return false;
-	}
-	
-	if(emptyCheck(contentField)){
-		alert("내용을 입력하세요");
-		contentField.value = "";
-		contentField.focus();		
-		return false;
-	}
+	}else{
 	return true;
+	}
 }
 
 function postReplyWriteCheck(){
@@ -148,8 +140,14 @@ function postReplyWriteCheck(){
 	
 	if(emptyCheck(contentField)){
 		alert("댓글을 입력하세요");
-		contentField.value = "";
 		contentField.focus();		
 		return false;
 	}
+}
+
+function deleteCheck(){
+	if(confirm("정말로 삭제를 진행하시겠습니까?\n 이 행동은 되둘릴 수 없습니다.")){
+		return true;
+	}
+	return false;
 }
