@@ -5,17 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="resources/js/check.js"></script>
 </head>
 <body>
-<div class="areaTable">
-	<form action="write.post" name="postWriteForm" onsubmit="return writeCheck();" method="POST">
-	<input type="hidden" name="token" value="${token }" readonly="true">
-		<table id="postWriteTable">
-			<tr><td align="center"><input placeholder="제목" name="hp_title"></td></tr>
-			<tr><td align="center"><textarea placeholder="내용" name="hp_content"></textarea></td></tr>
-			<tr><td align="center"><button>등록</button></td></tr>
-		</table>
+<div>
+	<form action="write.post" name="postWriteForm" onsubmit="return WriteCheck();" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="token" value="${token }">
+		<div>
+			<input name="pp_picture" type="file">
+			<textarea name="pp_content" placeholder="규정에 위반되는 글은 예고없이 삭제될 수 있습니다."></textarea>
+			<button>등록</button>
+		</div>
 	</form>
-	</div>
+</div>
 </body>
 </html>

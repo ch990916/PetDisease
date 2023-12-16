@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.paramhwi.dogDisease.board.PostDAO;
+import com.paramhwi.dogDisease.member.Member;
 import com.paramhwi.dogDisease.member.MemberDAO;
 
 /**
@@ -38,10 +39,8 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest req) {
 		if(firstReq) {
-			pDAO.getAllPostCount("");
 			firstReq = false;
 		}
-		pDAO.searchSessionReset(req);
 		mDAO.checkLogin(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "main/index";

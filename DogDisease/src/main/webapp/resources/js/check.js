@@ -1,14 +1,12 @@
 function joinCheck(){
-	var nameField = document.joinForm.hm_name;
-	var jumin1Field = document.joinForm.hm_jumin1;
-	var jumin2Field = document.joinForm.hm_jumin2;
-	var idField = document.joinForm.hm_id;
-	var pwField = document.joinForm.hm_pw;
-	var pwckField = document.joinForm.hm_pwck;
-	var address1Field = document.joinForm.hm_address1;
-	var address2Field = document.joinForm.hm_address2;
-	var address3Field = document.joinForm.hm_address3;
-	var photoField = document.joinForm.hm_photo;
+	var nameField = document.joinForm.pm_name;
+	var idField = document.joinForm.pm_id;
+	var pwField = document.joinForm.pm_pw;
+	var pwckField = document.joinForm.pm_pwck;
+	var address1Field = document.joinForm.pm_address1;
+	var address2Field = document.joinForm.pm_address2;
+	var address3Field = document.joinForm.pm_address3;
+	var photoField = document.joinForm.pm_photo;
 	
 	
 	if(emptyCheck(nameField)){
@@ -17,17 +15,6 @@ function joinCheck(){
 		nameField.focus();		
 		return false;
 	}
-
-	
-	if(emptyCheck(jumin1Field) || notNum(jumin1Field)
-			|| emptyCheck(jumin2Field) || notNum(jumin2Field)){
-		alert("주민등록번호 에러");
-		jumin1Field.value = "";
-		jumin2Field.value = "";
-		jumin1Field.focus();		
-		return false;
-	}
-
 	
 	if(emptyCheck(idField) 
 			|| subLetterCheck(idField, 4) 
@@ -91,13 +78,13 @@ function loginCheck(){
 }
 
 function updateCheck(){
-	var nameField = document.memberInfoForm.hm_name;
-	var pwField = document.memberInfoForm.hm_pw;
-	var pwckField = document.memberInfoForm.hm_pwck;
-	var address1Field = document.memberInfoForm.hm_address1;
-	var address2Field = document.memberInfoForm.hm_address2;
-	var address3Field = document.memberInfoForm.hm_address3;
-	var photoField = document.memberInfoForm.hm_photo;
+	var nameField = document.memberInfoForm.pm_nickname;
+	var pwField = document.memberInfoForm.pm_pw;
+	var pwckField = document.memberInfoForm.pm_pwck;
+	var address1Field = document.memberInfoForm.pm_address1;
+	var address2Field = document.memberInfoForm.pm_address2;
+	var address3Field = document.memberInfoForm.pm_address3;
+	var photoField = document.memberInfoForm.pm_photo;
 	
 	if(emptyCheck(nameField)){
 		alert("이름 에러");
@@ -136,50 +123,31 @@ function updateCheck(){
 	return true;
 }
 
-function writeCheck(){
-	var titleField = document.postWriteForm.hm_name;
-	var contentField = document.postWriteForm.hm_pw;
+function WriteCheck(){
+	var picture = document.postWriteForm.pp_picture;
+	var content = document.postWriteForm.pp_content;
 	
-	if(emptyCheck(titleField)){
-		alert("제목을 입력하세요");
-		titleField.value = "";
-		titleField.focus();		
+	if(emptyCheck(picture)){
+		alert("사진이 반드시 포함되어야 합니다.");		
 		return false;
-	}
-	
-	if(emptyCheck(contentField)){
-		alert("내용을 입력하세요");
-		contentField.value = "";
-		contentField.focus();		
-		return false;
-	}
+	}else{
 	return true;
+	}
 }
 
 function postReplyWriteCheck(){
-	var contentField = document.postReplyWriteForm.hpr_content;
+	var contentField = document.postReplyWriteForm.pr_content;
 	
 	if(emptyCheck(contentField)){
 		alert("댓글을 입력하세요");
-		contentField.value = "";
 		contentField.focus();		
 		return false;
 	}
 }
 
-function uploadCheck(d){
-	var titleField = d.hd_title;
-	var fileField = d.hd_file;
-	if(emptyCheck(titleField)){
-		alert("제목을 입력하세요");
-		titleField.value = "";
-		titleField.focus();		
-		return false;
+function deleteCheck(){
+	if(confirm("정말로 삭제를 진행하시겠습니까?\n 이 행동은 되둘릴 수 없습니다.")){
+		return true;
 	}
-	if(emptyCheck(fileField)){
-		alert("파일을 등록하세요");
-		fileField.value = "";
-		fileField.focus();		
-		return false;
-	}
+	return false;
 }

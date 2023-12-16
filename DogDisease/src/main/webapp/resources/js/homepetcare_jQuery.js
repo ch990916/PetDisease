@@ -22,12 +22,12 @@ function joinIdKeyEvent(){
 }
 
 function addressSearchEvent(){
-	$("#hm_address1 , #hm_address2").click(function(){
+	$("#pm_address1 , #pm_address2").click(function(){
 		new daum.Postcode({
 	        oncomplete: function(data) {
 	        	 var roadAddr = data.roadAddress;
-	        	document.getElementById('hm_address1').value = data.zonecode;
-                document.getElementById("hm_address2").value = roadAddr;
+	        	document.getElementById('pm_address1').value = data.zonecode;
+                document.getElementById("pm_address2").value = roadAddr;
 	        }
 	    }).open();
 	})

@@ -3,17 +3,18 @@ package com.paramhwi.dogDisease;
 public class IntegratedAttribute {
 	private int postNumInPage;
 	private int fileNumInPage;
-
+	private int noticeNumInPage;
 
 	public IntegratedAttribute() {
 		// TODO Auto-generated constructor stub
 	}
 	
 
-	public IntegratedAttribute(int postNumInPage, int fileNumInPage) {
+	public IntegratedAttribute(int postNumInPage, int fileNumInPage, int noticeNumInPage) {
 		super();
 		this.postNumInPage = postNumInPage;
 		this.fileNumInPage = fileNumInPage;
+		this.noticeNumInPage = noticeNumInPage;
 	}
 
 
@@ -35,4 +36,11 @@ public class IntegratedAttribute {
 		this.fileNumInPage = fileNumInPage;
 	}
 	
+	public void setNoticeNumInPage(int noticeNumInPage) {
+		this.noticeNumInPage = noticeNumInPage;
+	}
+	
+	public int getNoticeNumInPage() {
+		return noticeNumInPage;
+	}
 }

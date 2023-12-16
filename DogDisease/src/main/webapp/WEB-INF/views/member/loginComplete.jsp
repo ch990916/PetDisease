@@ -8,8 +8,8 @@
 </head>
 <body>
 	<table class="loginCompleteTable">
-		<tr><td rowspan="2"><img src="resources/userfiles/${sessionScope.user.hm_photo }"></td>
-		<td colspan="2">${sessionScope.user.hm_name }님 반갑습니다.</td></tr>
+		<tr><td rowspan="2"><img src="resources/userfiles/${sessionScope.user.pm_photo }"></td>
+		<td colspan="2">${sessionScope.user.pm_nickname }님 반갑습니다.</td></tr>
 		<tr><td><a href="memberInfo">회원정보</a></td>
 		<td id="logoutTd"><a href="logout">로그아웃</a></td></tr>
 	</table>

@@ -7,42 +7,32 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="resources/js/check.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1/dist/tailwind.min.css" rel="stylesheet">
 </head>
+<header class="py-5">
+	<c:if test=""></c:if>
+		<a href="board.write">글 쓰기</a>
+</header>
 <body>
-<div class="areaTable">
-	<h1>게시판</h1>
-	<table>
-		<tr><td align="right"><button onclick="location.href='write.go'">글쓰기</button></td></tr>
-		<tr><td align="center">
-			<table class="postIndexTable">
-				<tr><th>번호</th><th id="titleCol">제목</th><th>날짜</th><th>작성자</th></tr>
-				<c:forEach var="p" items="${posts }">
-					<tr onclick="location.href='post.content.go?no=${p.hp_no }'"><td>${p.hp_no }</td>
-					<td>${p.hp_title }</td>
-					<td><fmt:formatDate value="${p.hp_date }" type="date" dateStyle="short"/></td>
-					<td><img src="resources/userfiles/${p.hm_photo }">${p.hp_writer }</td></tr>
-				</c:forEach>	
-			</table>
-		</td></tr>
-		<tr>
-		<td align="center">
-			<table>
-			 <tr>
-			 	<c:forEach var="p" begin="1" end="${pageCount}">
-			 	<td><a href="board.change?page=${p }&searchWord=${searchWord }">${p }</a></td>
-			 	</c:forEach>
-			 	
-			 </tr>
-			</table>
-		</td>			
-		</tr>
-		<tr>
-		<form action="board.search" >
-			<td align="center"><input name="searchWord" id="searchInput">
-			<button>검색</button></td>
-		</form>
-		</tr>
-	</table>
+<div>
+	<h1>SNS Page</h1>
+		<c:forEach var="p" items="${posts }">
+			<div class="py-5">
+					<div>
+						<img src="resources/userfiles/${p.pm_photo }" alt="${p.pm_photo }"/>
+						${p.pm_nickname } / ${p.pp_date }
+						<p>${p.pp_content }</p>
+						<img src="resources/post/${p.pp_picture }" alt="${p.pp_picture}"/>
+					</div>
+				<form action="post.delete" onsubmit="return deleteCheck()" method="post">
+						<input name="pp_no" type="hidden" value="${p.pp_no }"/>
+						<input name="pp_picture" type="hidden" value="${p.pp_picture }"/>
+						<button>delete</button>
+				</form>
+				<button onclick="">show reply</button>
+			</div>
+		</c:forEach>
 	</div>
 </body>
 </html>

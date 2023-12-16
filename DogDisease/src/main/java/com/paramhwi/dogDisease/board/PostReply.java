@@ -1,54 +1,65 @@
 package com.paramhwi.dogDisease.board;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class PostReply {
-	private BigDecimal hpr_no;
-	private BigDecimal hpr_hp_no;
-	private String hpr_writer;
-	private String hpr_content;
-	private Date hpr_date;
+	private Integer pr_no;
+	private Integer pr_pp_no;
+	private String pr_writer;
+	private String pr_content;
+	private Date pr_date;
+	
 	public PostReply() {
 		// TODO Auto-generated constructor stub
 	}
-	public PostReply(BigDecimal hpr_no, BigDecimal hpr_hp_no, String hpr_writer, String hpr_content, Date hpr_date) {
+
+	public PostReply(Integer pr_no, Integer pr_pp_no, String pr_writer, String pr_content, Date pr_date) {
 		super();
-		this.hpr_no = hpr_no;
-		this.hpr_hp_no = hpr_hp_no;
-		this.hpr_writer = hpr_writer;
-		this.hpr_content = hpr_content;
-		this.hpr_date = hpr_date;
+		this.pr_no = pr_no;
+		this.pr_pp_no = pr_pp_no;
+		this.pr_writer = pr_writer;
+		this.pr_content = pr_content;
+		this.pr_date = pr_date;
 	}
-	public BigDecimal getHpr_no() {
-		return hpr_no;
+
+	public Integer getPr_no() {
+		return pr_no;
 	}
-	public void setHpr_no(BigDecimal hpr_no) {
-		this.hpr_no = hpr_no;
+
+	public void setPr_no(Integer pr_no) {
+		this.pr_no = pr_no;
 	}
-	public BigDecimal getHpr_hp_no() {
-		return hpr_hp_no;
+
+	public Integer getPr_pp_no() {
+		return pr_pp_no;
 	}
-	public void setHpr_hp_no(BigDecimal hpr_hp_no) {
-		this.hpr_hp_no = hpr_hp_no;
+
+	public void setPr_pp_no(Integer pr_pp_no) {
+		this.pr_pp_no = pr_pp_no;
 	}
-	public String getHpr_writer() {
-		return hpr_writer;
+
+	public String getPr_writer() {
+		return pr_writer;
 	}
-	public void setHpr_writer(String hpr_writer) {
-		this.hpr_writer = hpr_writer;
+
+	public void setPr_writer(String pr_writer) {
+		this.pr_writer = pr_writer;
 	}
-	public String getHpr_content() {
-		return hpr_content;
+
+	public String getPr_content() {
+		return pr_content;
 	}
-	public void setHpr_content(String hpr_content) {
-		this.hpr_content = hpr_content;
+
+	public void setPr_content(String pr_content) {
+		this.pr_content = pr_content;
 	}
-	public Date getHpr_date() {
-		return hpr_date;
+
+	public Date getPr_date() {
+		return pr_date;
 	}
-	public void setHpr_date(Date hpr_date) {
-		this.hpr_date = hpr_date;
+
+	public void setPr_date(Date pr_date) {
+		this.pr_date = pr_date;
 	}
 	
 }

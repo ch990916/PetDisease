@@ -8,8 +8,7 @@
 </head>
 <body>
 	<table align="center">
-	<tr align="center"><td>로고</td></tr>
-	<tr align="center"><td>제목</td></tr>
+	<tr align="center"><td><img alt="logo" href="#"/></td></tr>
 	<tr align="center"><td>소개말</td></tr>	
 	</table>
 
