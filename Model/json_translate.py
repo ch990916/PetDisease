@@ -17,8 +17,10 @@ app = Flask(__name__)
 def predict_image_model(pt_path, img_path):# /best.pt를/넣은/path/best.pt, # 이미지가 적힌 path
   model = YOLO(pt_path)
   results = model(img_path)  # return a list of Results objects
+  return results
 
-def jsonify(results):
+# 예측 데이터를 필요한 정보들만 딕셔너리 형태로 담는다
+def box_dict(results):
   # Process results list
   for result in results:
       boxes = result.boxes.cpu().numpy()  # Boxes object for bbox outputs
@@ -29,23 +31,28 @@ def jsonify(results):
       'orig_shape': [box.orig_shape[0], box.orig_shape[1]], # [width, height]
       'xyxy': [round(v) for v in box.xyxy[0]], # [x시작좌표, y시작좌표, x종료좌표, y종료좌표]
   }
-  json_str = json.dumps(box_dict)
-  return json_str
+  return box_dict
+
+# 딕셔너리를 받아서 json 형태로 반환
+def jsonify(box_dict):
+  return json.dumps(box_dict, ensure_ascii=False, indent="\t")
+
 
 # 혹시 몰라서 json파일을 생성하는 함수도 만듬
-def make_json_file(json_str, save_folder_path): # json 데이터형태의 str을 입력받기, 저장될 폴더 path 받기
+def make_json_file(box_dict, save_folder_path): # 딕셔너리 데이터 입력받기, 저장될 폴더 path 받기
   with open(save_folder_path + '/' + 'json_file.json', "w", encoding="utf-8") as file_write: # 저장될 폴더에 json 파일 만들기
     # write json data into file
-    json.dump(json_str, file_write, ensure_ascii=False, indent="\t") # 만든 json파일에 내용 적기, indent="\t" 있어야 한줄로 않나오고 탭넣어서 나옴
+    json.dump(box_dict, file_write, ensure_ascii=False, indent="\t") # 만든 json파일에 내용 적기, indent="\t" 있어야 한줄로 않나오고 탭넣어서 나옴
 
 @app.route('/')
-def hello_world():
-  return 'Hello World!'
+def index_html():
+  return 'index.html'
 
 @app.route('/predict.do')
 def predictDo(pt_path, img_path):
   results = predict_image_model(pt_path, img_path)
-  json = jsonify(results)
+  box = box_dict(results)
+  json = jsonify(box)
   return json
 
 if __name__ == '__main__':
