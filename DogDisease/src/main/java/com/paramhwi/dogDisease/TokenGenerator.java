@@ -17,6 +17,5 @@ public class TokenGenerator {
 	public void generate(HttpServletRequest req) {
 		String token = sdf.format(new Date());
 		req.setAttribute("token", token);
-		System.out.println(token);
 	}
 }

@@ -9,30 +9,87 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="resources/js/check.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1/dist/tailwind.min.css" rel="stylesheet">
+<script type="text/javascript">
+	var page=5;
+	
+	function loadPost(){
+		$.ajax({
+			url: '/post.load',
+			type:"GET",
+			data:{"page":page},
+			success: function(data){
+				alert(${page});
+				page+=5;
+			},
+			error: function(){
+				alert("Function Test");
+			}
+		});
+	}
+	
+	$(function(){
+		$(window).scroll(function(){
+			if ($(window).scrollTop()== $(document).height() - $(window).height()){
+				loadPost();
+			}
+		});
+	})
+</script>
 </head>
-<header class="py-5">
-	<c:if test=""></c:if>
-		<a href="board.write">글 쓰기</a>
-</header>
 <body>
-<div>
-	<h1>SNS Page</h1>
-		<c:forEach var="p" items="${posts }">
-			<div class="py-5">
-					<div>
-						<img src="resources/userfiles/${p.pm_photo }" alt="${p.pm_photo }"/>
-						${p.pm_nickname } / ${p.pp_date }
-						<p>${p.pp_content }</p>
-						<img src="resources/post/${p.pp_picture }" alt="${p.pp_picture}"/>
-					</div>
-				<form action="post.delete" onsubmit="return deleteCheck()" method="post">
-						<input name="pp_no" type="hidden" value="${p.pp_no }"/>
-						<input name="pp_picture" type="hidden" value="${p.pp_picture }"/>
-						<button>delete</button>
-				</form>
-				<button onclick="">show reply</button>
-			</div>
-		</c:forEach>
+<div class="h-full w-8/12 bg-white bg-opacity-25">
+	<div class="py-5 font-bold hover:text-gray-400" align="left">
+		<c:if test="${!empty sessionScope.user}">
+			<a href="board.write">글 쓰기</a>
+		</c:if>
 	</div>
+	<h1 class="text-4xl font-bold">SNS Page</h1>
+	<c:forEach var="p" items="${posts }">
+		<div class="py-5 w-10/12" align="left">
+			<div class="shadow-lg" align="left">
+				<div class="text-sm text-gray-600">
+					${p.pm_nickname } / <fmt:formatDate value="${p.pp_date }" type="both" dateStyle="short" timeStyle="short"/>
+				</div>
+				<p>${p.pp_content }</p>
+				<img src="resources/post/${p.pp_picture }" alt="${p.pp_picture}" style="max-height:600px; max-width:600px;"/>
+			</div>
+			<c:if test="${p.pp_writer == sessionScope.user.pm_id or sessionScope.user.pm_admin == 4}">
+				<div class="">
+					<form action="post.delete" onsubmit="return deletePostCheck()" method="post">
+							<input name="pp_no" type="hidden" value="${p.pp_no }"/>
+							<input name="pp_picture" type="hidden" value="${p.pp_picture }"/>
+							<button>delete</button>
+					</form>
+				</div>
+			</c:if>
+			<c:if test="${!empty sessionScope.user }">
+				<form name="replyForm" action="reply.write" onsubmit="return postReplyWriteCheck();" method="post">
+					<div>
+						<input name="pr_pp_no" value="${p.pp_no }" type="hidden"/>
+						${sessionScope.user.pm_id } :<input name="pr_content"/>
+						<button class="bg-gray-200 shadow-md">submit</button>
+					</div>
+				</form>
+			</c:if>
+			<c:forEach var="r" items="${p.pp_replys }">
+				<div class="grid grid-cols-2" align="left">
+					<div class="col-auto">
+						<div class="bg-gray-200 text-lg font-bold">
+							${r.pr_writer } : ${r.pr_content }
+						</div>
+					</div>
+					<div class="col-auto w-16 bg-gray-400">
+						<c:if test="${r.pr_writer == sessionScope.user.pm_id or sessionScope.user.pm_admin == 4}">
+							<form action="reply.delete" onsubmit="return deletePostCheck();" method="post">
+								<input name="pr_no" type="hidden" value="${r.pr_no }"/>
+								<button>delete</button>
+							</form>
+						</c:if>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</c:forEach>
+</div>
 </body>
 </html>

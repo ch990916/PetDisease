@@ -40,7 +40,7 @@
 					)
 				)
 				where rn &gt;= #{startNum} and rn &lt;= #{endNum}
-			
+			)
 		)
 		where pm_id=pp_writer
 	</select>
@@ -49,6 +49,7 @@
 		select *
 		from petdisease_reply
 		where pr_pp_no=#{pp_no}
+		order by pr_date
 	</select>
 	
 	<select id="searchContent" parameterType="com.paramhwi.dogDisease.board.Post" resultType="com.paramhwi.dogDisease.board.Post">
@@ -72,6 +73,10 @@
 		)
 	</insert>
 	
+	<delete id="deleteReply" parameterType="com.paramhwi.dogDisease.board.PostReply">
+		delete from petdisease_reply
+		where pr_no=#{pr_no}
+	</delete>
 	
 	<delete id="deletePost" parameterType="com.paramhwi.dogDisease.board.Post">
 		delete from petdisease_post

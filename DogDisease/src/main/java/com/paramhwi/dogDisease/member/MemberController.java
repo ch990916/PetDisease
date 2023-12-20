@@ -1,7 +1,5 @@
 package com.paramhwi.dogDisease.member;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +103,12 @@ public class MemberController {
 		mDAO.checkLogin(req);
 		mDAO.changeAdmin(req);
 		return memberList(req);
-		
+	}
+	
+	@RequestMapping(value="/admin.deleteMember", method=RequestMethod.POST)
+	public String adminDeleteMember(Member m, HttpServletRequest req) {
+		mDAO.checkLogin(req);
+		mDAO.adminMemberDelete(m, req);
+		return memberList(req);
 	}
 }

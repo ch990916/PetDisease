@@ -34,18 +34,13 @@ public class PostDAO {
 			mr = new MultipartRequest(req, path,500*1024*1024,"utf-8",new DefaultFileRenamePolicy());
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Picture register Failed");
 			return;
 		}
 		
 		try {
 			String token = req.getParameter("token");
-			String lastToken = (String) req.getSession().getAttribute("lastToken");
-			System.out.println("token: "+token);
-			System.out.println("lastToken: "+lastToken);
-			
+			String lastToken = (String) req.getSession().getAttribute("lastToken");	
 			if(lastToken != null && lastToken.equals("token")) {
-				System.out.println("토큰 불일치");
 				return;
 			}
 			
@@ -59,29 +54,32 @@ public class PostDAO {
 			}		
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("token");
 			return;
 		}
 	}
 
-	public void searchPage(int page, HttpServletRequest req) {
+	public void searchPage(HttpServletRequest req) {
 		postNumInPage = ia.getPostNumInPage();
-		int startNum = (page - 1) * postNumInPage + 1;
-		int endNum = startNum + postNumInPage - 1;
-		SearchInfo si = new SearchInfo(startNum, endNum, "");
+		SearchInfo si = new SearchInfo(1, 1+postNumInPage, "");
 		List<Post> posts = ss.getMapper(PostMapper.class).searchPage(si);
+		for (Post p : posts) {
+			List<PostReply> reply = ss.getMapper(PostMapper.class).getReply(p);
+			p.setPp_replys(reply);
+		}
 		req.setAttribute("posts", posts);
 	}
 	
-	
-	
-	public void getPostContent(HttpServletRequest req) {
-		Post tmp = new Post();
-		Integer no = Integer.parseInt(req.getParameter("no"));
-		tmp.setPp_no(no);
-		Post p = ss.getMapper(PostMapper.class).searchContent(tmp);
-		req.setAttribute("post", p);
+	public List<Post> loadPost(HttpServletRequest req){
+		int page = Integer.parseInt(req.getParameter("page"));
+		SearchInfo si = new SearchInfo(page,page+postNumInPage,"");
+		List<Post> posts = ss.getMapper(PostMapper.class).searchPage(si);
+		for (Post p: posts) {
+			List<PostReply> reply = ss.getMapper(PostMapper.class).getReply(p);
+			p.setPp_replys(reply);
+		}
+		return posts;
 	}
+	
 	
 	public void getReply(HttpServletRequest req) {
 		Post p = new Post();
@@ -112,7 +110,6 @@ public class PostDAO {
 		try {
 			p.setPp_no(Integer.parseInt(req.getParameter("pp_no"))); 
 			if(ss.getMapper(PostMapper.class).deletePost(p)==1) {
-				System.out.println("Post Deleted");
 				String path = req.getSession().getServletContext().getRealPath("resources/post");
 				String file = URLDecoder.decode(req.getParameter("pp_picture"),"utf-8");
 				new File(path + "/" + file).delete();
@@ -122,6 +119,12 @@ public class PostDAO {
 			e.printStackTrace();
 			System.out.println("Post Delete Failed");
 		}
+	}
+	
+	public void deleteReply(PostReply pr, HttpServletRequest req) {
+		pr.setPr_no(Integer.parseInt(req.getParameter("pr_no")));
+		ss.getMapper(PostMapper.class).deleteReply(pr);
+
 	}
 	
 	public void updatePost(Post p, HttpServletRequest req) {
@@ -150,7 +153,6 @@ public class PostDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Database Update Failed");
 			File f = new File(path+"/"+ mr.getFilesystemName("pp_picutre"));
 			f.delete();
 		}

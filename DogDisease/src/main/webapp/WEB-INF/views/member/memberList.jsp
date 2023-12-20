@@ -7,13 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="border-solid border-4 border-black">
+	<div class="h-screen border-solid border-4 border-black">
 		<c:forEach var="m" items="${members }">
-		<div>
-			<a href="admin.memberInfo?id=${m.pm_id }">${m.pm_id }</a>
-			${m.pm_nickname }
-			${m.pm_address }
-			${m.pm_mail }		
+		<div class="grid grid-cols-4">
+			<div class="col-auto"><a href="admin.memberInfo?id=${m.pm_id }" class="font-bold hover:text-gray-600">${m.pm_id }</a></div>
+			<div class="col-auto">${m.pm_nickname }</div>
+			<div class="col-auto">${m.pm_address }</div>
+			<div class="col-auto">${m.pm_mail }</div>		
 		</div>
 		</c:forEach>
 

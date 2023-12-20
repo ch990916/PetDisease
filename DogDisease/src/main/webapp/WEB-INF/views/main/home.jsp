@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table align="center">
-	<tr align="center"><td><img alt="logo" href="#"/></td></tr>
-	<tr align="center"><td>소개말</td></tr>	
-	</table>
-
-	
+	<div class="h-screen" align="center">
+		<div class="text-4xl text-gray-600">소개말</div>
+		
+			
+	</div>
 </body>
 </html>

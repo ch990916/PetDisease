@@ -18,4 +18,6 @@ public interface PostMapper {
 	public abstract int deletePost(Post p);
 	
 	public abstract int updatePost(Post p);
+	
+	public abstract int deleteReply(PostReply pr);
 }

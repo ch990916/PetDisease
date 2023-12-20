@@ -59,14 +59,13 @@ public class NoticeDAO {
 		String token = req.getParameter("token");
 		String lastToken = (String) req.getSession().getAttribute("lastToken");
 		if(lastToken != null && lastToken.equals(token)) {
-			req.setAttribute("state", "글쓰기 실패");
-			System.out.println("글쓰기 실패");
+			req.setAttribute("result", "글쓰기 실패");
 			return;
 		}
 		Member user = (Member) req.getSession().getAttribute("user");
 		n.setPn_writer(user.getPm_id());
 		if(ss.getMapper(NoticeMapper.class).writeNotice(n) == 1) {
-			req.setAttribute("state", "글쓰기 성공");
+			req.setAttribute("result", "글쓰기 성공");
 			allNoticeCount++;
 			req.getSession().setAttribute("lastToken", token);
 		}
@@ -94,9 +93,9 @@ public class NoticeDAO {
 		Notice n = new Notice();
 		n.setPn_no(Integer.parseInt(req.getParameter("pn_no")));
 		if(ss.getMapper(NoticeMapper.class).deleteNotice(n)==1) {
-			System.out.println("Notice Deleted");
+			req.setAttribute("result", "Notice Deleted");
 		}else {
-			System.out.println("Notice Delete Failed");
+			req.setAttribute("result", "Notice Delete Failed");
 		}
 	}
 	
@@ -104,9 +103,9 @@ public class NoticeDAO {
 		n.setPn_title(req.getParameter("pn_title"));
 		n.setPn_content(req.getParameter("pn_content"));
 		if(ss.getMapper(NoticeMapper.class).updateNotice(n)==1) {
-			System.out.println("Notice Updated");
+			req.setAttribute("result", "Notice Updated");
 		}else {
-			System.out.println("Notice Update Failed");
+			req.setAttribute("result", "Notice Update Failed");
 		}
 	}
 }

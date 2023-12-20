@@ -43,8 +43,7 @@ public class MemberDAO {
 					new DefaultFileRenamePolicy());
 		} catch (Exception e) {
 			e.printStackTrace();
-			req.setAttribute("joinResult", "사진 오류");
-			System.out.println("사진 오류");
+			req.setAttribute("result", "사진 등록 오류");
 			return;
 		}
 		
@@ -68,8 +67,7 @@ public class MemberDAO {
 			m.setPm_admin(3);
 			
 			ss.getMapper(MemberMapper.class).joinMember(m);
-			req.setAttribute("joinResult", "성공");
-			System.out.println("join succeed");
+			req.setAttribute("result", "회원 가입 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("???");
@@ -83,18 +81,18 @@ public class MemberDAO {
 		if (user != null) {
 			if(m.getPm_pw().equals(user.getPm_pw())) {
 				if(user.getPm_admin()<1) {
-					req.setAttribute("loginResult", "로그인 금지. 관리자 문의 요망");
+					req.setAttribute("result", "로그인 금지. 관리자 문의 요망");
 					return;
 				}
 				req.getSession().setAttribute("user", user);
 				return;
 			}
 			else {
-				req.setAttribute("loginResult", "비밀번호 다름");
+				req.setAttribute("result", "id 혹은 비밀번호가 일치하지 않습니다.");
 			}
 		}
 		else {		
-			req.setAttribute("loginResult", "id없음");
+			req.setAttribute("result", "id 혹은 비밀번호가 일치하지 않습니다.");
 		}
 		return;
 	}
@@ -134,7 +132,6 @@ public class MemberDAO {
 	public void deleteMember(HttpServletRequest req) {
 		try {
 			Member user = (Member)req.getSession().getAttribute("user");
-			int userPost = ss.getMapper(MemberMapper.class).getPostCount(user);
 			if(ss.getMapper(MemberMapper.class).deleteMember(user) == 1) {		
 				req.setAttribute("result", "탈퇴 성공");
 				String path = req.getSession().getServletContext().getRealPath("resources/userfiles");
@@ -159,8 +156,7 @@ public class MemberDAO {
 					new DefaultFileRenamePolicy());
 		} catch (Exception e) {
 			e.printStackTrace();
-			req.setAttribute("joinResult", "사진 오류");
-			System.out.println("사진 오류");
+			req.setAttribute("result", "사진 등록 오류");
 			return;
 		}
 		
@@ -187,8 +183,7 @@ public class MemberDAO {
 			m.setPm_mail(pm_mail);
 			
 			if(ss.getMapper(MemberMapper.class).updateMember(m) == 1) {
-				System.out.println("수정 성공");
-				req.setAttribute("result", "수정 성공");
+				req.setAttribute("result", "정보 수정 성공");
 				if(!file.equals(beforeFile)) {
 					beforeFile = URLDecoder.decode(beforeFile,"utf-8");
 					new File(path+"/"+beforeFile).delete();
@@ -197,7 +192,6 @@ public class MemberDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("DB오류");
 			File f = new File(path + "/" + mr.getFilesystemName("pm_photo"));
 			f.delete();
 		}
@@ -219,8 +213,17 @@ public class MemberDAO {
 	public void adminMemberInfo(HttpServletRequest req) {
 		Member m = new Member();
 		m.setPm_id(req.getParameter("id"));
-		List<Member> members = ss.getMapper(MemberMapper.class).getMemberByID2(m);
-		req.setAttribute("members", members);
+		Member member = ss.getMapper(MemberMapper.class).getMemberByID(m);
+		req.setAttribute("member", member);
+	}
+	
+	public void adminMemberDelete(Member m,HttpServletRequest req) {
+		m.setPm_id(req.getParameter("pm_id"));
+		if(ss.getMapper(MemberMapper.class).deleteMember(m)==1){
+			req.setAttribute("result", "Memeber Deleted");
+		}else {
+			req.setAttribute("result", "Member Delete Failed");
+		}
 	}
 	
 	public void changeAdmin(HttpServletRequest req) {
@@ -232,9 +235,9 @@ public class MemberDAO {
 		m.setPm_admin(pm_admin);
 				
 		if(ss.getMapper(MemberMapper.class).updateAdmin(m)==1) {
-			System.out.println("Admin Updated");
+			req.setAttribute("result", "Admin Updated");
 		}else {
-			System.out.println("Update Failed");
+			req.setAttribute("result", "Admin Update Failed");
 		}
 	}
 	

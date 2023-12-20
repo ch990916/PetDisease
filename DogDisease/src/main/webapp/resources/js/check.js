@@ -136,16 +136,17 @@ function WriteCheck(){
 }
 
 function postReplyWriteCheck(){
-	var contentField = document.postReplyWriteForm.pr_content;
+	var contentField = document.replyForm.pr_content;
 	
 	if(emptyCheck(contentField)){
 		alert("댓글을 입력하세요");
 		contentField.focus();		
 		return false;
 	}
+	return true;
 }
 
-function deleteCheck(){
+function deletePostCheck(){
 	if(confirm("정말로 삭제를 진행하시겠습니까?\n 이 행동은 되둘릴 수 없습니다.")){
 		return true;
 	}

@@ -56,7 +56,7 @@
 	</beans:bean>
 	
 	<beans:bean id="ia" class="com.paramhwi.dogDisease.IntegratedAttribute">
-		<beans:constructor-arg name="postNumInPage" value="10"></beans:constructor-arg>
+		<beans:constructor-arg name="postNumInPage" value="5"></beans:constructor-arg>
 		<beans:constructor-arg name="fileNumInPage" value="10"></beans:constructor-arg>
 		<beans:constructor-arg name="noticeNumInPage" value="10"></beans:constructor-arg>
 	</beans:bean>

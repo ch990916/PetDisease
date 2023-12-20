@@ -11,7 +11,7 @@
 <body>
 	<form action="notice.update" onsubmit="return writeCheck();" method="post">
 		<div>
-			<input name="pn_no" value="${notice.pn_no }"/>
+			<input name="pn_no" value="${notice.pn_no }" type="hidden"/>
 			<div> 
 				작성자 : ${notice.pm_nickname }
 				<input name="pn_title" value="${notice.pn_title }"/>

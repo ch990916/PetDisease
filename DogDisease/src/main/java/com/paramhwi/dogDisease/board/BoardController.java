@@ -1,11 +1,14 @@
 package com.paramhwi.dogDisease.board;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.paramhwi.dogDisease.TokenGenerator;
 import com.paramhwi.dogDisease.member.Member;
@@ -26,17 +29,15 @@ public class BoardController {
 	public String boardGo(HttpServletRequest req) {	
 		mDAO.checkLogin(req);
 		tg.generate(req);
-		pDAO.searchPage(1, req);
+		pDAO.searchPage(req);
 		req.setAttribute("contentPage", "../board/boardIndex.jsp");
 		return "main/index";
 	}
 	
-	@RequestMapping(value = "/board.change", method = RequestMethod.GET)
-	public String boardChange(HttpServletRequest req) {	
-		mDAO.checkLogin(req);
-		pDAO.searchPage(Integer.parseInt(req.getParameter("page")), req);
-		req.setAttribute("contentPage", "../board/boardIndex.jsp");
-		return "main/index";
+	@RequestMapping(value = "/post.load", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Post> boardChange(HttpServletRequest req) {
+		return pDAO.loadPost(req);
 	}
 	
 	@RequestMapping(value = "/board.write", method = RequestMethod.GET)
@@ -56,7 +57,7 @@ public class BoardController {
 	public String writePost(Post p, HttpServletRequest req) {	
 		if(mDAO.checkLogin(req)) {
 			pDAO.writePost(p, req);
-			pDAO.searchPage(1, req);
+			pDAO.searchPage(req);
 			req.setAttribute("contentPage", "../board/boardIndex.jsp");		
 		}
 		else {			
@@ -65,21 +66,18 @@ public class BoardController {
 		return "main/index";
 	}
 	
-	@RequestMapping(value = "/post.content.go", method = RequestMethod.GET)
-	public String postContentGo(HttpServletRequest req) {	
-		mDAO.checkLogin(req);
-		pDAO.getPostContent(req);
-		tg.generate(req);
-		req.setAttribute("contentPage", "../board/postContent.jsp");
-		return "main/index";
-	}
-	
 	@RequestMapping(value = "/reply.write", method = RequestMethod.POST)
 	public String replyWrite(Member m,PostReply pr ,HttpServletRequest req) {	
 		if(mDAO.checkLogin(req)) {
 			pDAO.writeReply(pr, req);
 		}
-		pDAO.getPostContent(req);
+		return boardGo(req);
+	}
+	
+	@RequestMapping(value="/reply.delete", method=RequestMethod.POST)
+	public String replyDelete(PostReply pr,HttpServletRequest req) {
+		mDAO.checkLogin(req);
+		pDAO.deleteReply(pr, req);
 		return boardGo(req);
 	}
 	

@@ -24,7 +24,6 @@ public class NoticeController {
 	
 	@RequestMapping(value = "/notice.go", method = RequestMethod.GET)
 	public String noticeBoardGo(HttpServletRequest req) {	
-		System.out.println("here");
 		mDAO.checkLogin(req);
 		nDAO.searchSessionReset(req);
 		nDAO.searchPage(1, req);
