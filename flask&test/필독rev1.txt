@@ -10,11 +10,24 @@
 ********			으로 만들어서 사용하였음										  ********
 **********************************************************************************************
 
-pet_detect.pt 파일과 skin_Detect.py 파일은 동일 경로에 있을것
 
-python 3.10.13 환경 CMD
-skin_Detect가 있는 폴더로 이동
-python skin_Detect.py  실행 ---- FLASK구동
+1. 기본적으로 anconda를 사용중이어서 conda 가상환경에서 진행
+	flask 구동에 필요한 파일들이 하나의 폴더 안에 있다고 가정함
+	
+	ㄱ.	conda create -n pet python=3.10					pet이라는 python 3.10이 적용된 가상환경 생성
+	
+	ㄴ. conda activate pet								가상환경(pet 활성화)
+	
+	ㄷ. cd (flask 구동에 필요한 파일 담아둔 폴더)		경로 이동
+	
+	ㄹ. pip install -r requirements.txt					requirements.txt 안에 있는 lib 설치
+			혹시 torch 설치 중 에러가 발생하는 경우
+			pip3 install torch torchvision torchaudio		해당 명령어 사용
+	
+	ㅁ. python skin_Detect.py							skin_Detect flask 실행
+
+
+
 
 
 test를 위한 image파일 및 간단한 html 파일 작성하여 첨부
