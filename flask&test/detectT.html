@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>detect</title>
+</head>
+<body>
+    <input type="file" id="imageInput" accept="image/*">
+    <button onclick="detect()">DETECT</button>
+
+    <script>
+        function detect() {
+            var input = document.getElementById('imageInput');
+            var file = input.files[0];
+
+            if (file) {
+                var formData = new FormData();
+                formData.append('image', file);
+
+                fetch('http://localhost:5000/detect.json', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Received data 부분을 그대로 텍스트로 출력
+                    var receiveElement = document.getElementById('receivedData');
+                    receiveElement.textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+
+        
+    </script>
+    <!-- 받아온 receiverd data text로 확인하기-->
+    <div id="receivedData"></div>
+
+</body>
+</html>
