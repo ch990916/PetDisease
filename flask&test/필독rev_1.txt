@@ -12,7 +12,7 @@
 
 
 1. 기본적으로 anconda를 사용중이어서 conda 가상환경에서 진행
-	flask 구동에 필요한 파일들이 하나의 폴더 안에 있다고 가정함
+	flask 구동에 필요한 파일들이 하나의 폴더 안에 있다고 가정함 
 	
 	ㄱ.	conda create -n pet python=3.10					pet이라는 python 3.10이 적용된 가상환경 생성
 	
