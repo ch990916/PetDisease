@@ -152,3 +152,14 @@ function deletePostCheck(){
 	}
 	return false;
 }
+
+function noticeWriteCheck(){
+	var title = document.noticeWriteForm.pn_title;
+	var content = document.noticeWriteForm.pn_content;
+	
+	if(emptyCheck(title) || emptyCheck(content)){
+		alert("제목과 내용을 모두 입력하여야 합니다.");
+		return false;
+	}
+	return true;
+}

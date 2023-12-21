@@ -9,8 +9,6 @@
 <body>
 	<div class="h-screen" align="center">
 		<div class="text-4xl text-gray-600">소개말</div>
-		
-			
-	</div>
+	</div>	
 </body>
 </html>

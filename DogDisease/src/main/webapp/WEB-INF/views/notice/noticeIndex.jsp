@@ -20,7 +20,7 @@
 		</div>
 		<div class="place-self-end">
 			<c:if test="${sessionScope.user.pm_admin==4}">
-				<button class="font-bold text-xl hover:text-gray-400" onclick="location.href='notice.write'">글쓰기</button>
+				<button class="p-2 font-bold text-xl hover:text-gray-400" onclick="location.href='notice.write'">글쓰기</button>
 			</c:if>
 		</div>
 	</div>

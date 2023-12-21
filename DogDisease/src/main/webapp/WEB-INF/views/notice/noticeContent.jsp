@@ -30,7 +30,7 @@
 					<form action="notice.update.go" method="post">
 						<div>
 							<input value="${notice.pn_no }" name="pn_no" type="hidden">
-							<button>update</button>
+							<button class="p-2 text-xl font-bold hover:text-gray-400">update</button>
 						</div>
 					</form>
 				</div>
@@ -38,7 +38,7 @@
 					<form action="notice.delete" onsubmit="return deletePostCheck();" method="post">
 						<div>
 							<input value="${notice.pn_no }" name="pn_no" type="hidden">
-							<button>delete</button>
+							<button class="p-2 text-xl font-bold hover:text-gray-400">delete</button>
 						</div>
 					</form>
 				</div>

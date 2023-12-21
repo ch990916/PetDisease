@@ -64,6 +64,8 @@ public class NoticeDAO {
 		}
 		Member user = (Member) req.getSession().getAttribute("user");
 		n.setPn_writer(user.getPm_id());
+		n.setPn_title(req.getParameter("pn_title"));
+		n.setPn_content(req.getParameter("pn_title").replace("\n", "<br>"));
 		if(ss.getMapper(NoticeMapper.class).writeNotice(n) == 1) {
 			req.setAttribute("result", "글쓰기 성공");
 			allNoticeCount++;
@@ -101,7 +103,7 @@ public class NoticeDAO {
 	
 	public void UpdateNotice(Notice n, HttpServletRequest req) {
 		n.setPn_title(req.getParameter("pn_title"));
-		n.setPn_content(req.getParameter("pn_content"));
+		n.setPn_content(req.getParameter("pn_content").replace("<br>","").replace("\n", "<br>"));
 		if(ss.getMapper(NoticeMapper.class).updateNotice(n)==1) {
 			req.setAttribute("result", "Notice Updated");
 		}else {

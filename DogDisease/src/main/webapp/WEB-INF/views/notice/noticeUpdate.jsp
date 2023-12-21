@@ -9,19 +9,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="notice.update" onsubmit="return writeCheck();" method="post">
-		<div>
-			<input name="pn_no" value="${notice.pn_no }" type="hidden"/>
-			<div> 
-				작성자 : ${notice.pm_nickname }
-				<input name="pn_title" value="${notice.pn_title }"/>
-				<fmt:formatDate value="${notice.pn_date }" type="both" dateStyle="long" timeStyle="short"/>
-			</div>
+	<div class="h-screen w-8/12">
+		<div class="text-2xl font-bold"">게시물 수정</div>
+		<form action="notice.update" onsubmit="return noticeWriteCheck();" method="post">
 			<div>
-				<textarea name="pn_content">${notice.pn_content }</textarea>
+				<input name="pn_no" value="${notice.pn_no }" type="hidden"/>
+				<div> 
+					<div class="text-sm text-gray-400" align="left">${notice.pm_nickname }&nbsp;<fmt:formatDate value="${notice.pn_date }" type="both" dateStyle="short" timeStyle="short"/></div>
+					<input class="mt-2 w-full" name="pn_title" value="${notice.pn_title }"/>
+				</div>
+				<div class="mt-2 w-full">
+					<textarea class="w-full" style="min-height:500px;" name="pn_content">${notice.pn_content }</textarea>
+				</div>
+				<button class="bg-gray-200 hover:bg-gray-600 text-xl text-black text-center font-bold">수정</button>		
 			</div>
-			<button>submit</button>		
-		</div>
-	</form>
+		</form>
+	</div>
 </body>
 </html>
