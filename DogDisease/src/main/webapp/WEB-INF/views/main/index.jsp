@@ -18,9 +18,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 </head>
 <body>
-	<div class="grid grid-cols-3 fixed inset-x-0 top-0 left-0 bg-purple-400 bg-opacity-75 h-auto">
+	<div class="grid grid-cols-3 fixed inset-x-0 top-0 left-0 bg-purple-400 bg-opacity-75 h-auto pb-4">
 		<div class="text-4xl font-bold text-white mt-2">
-			<a href="index">펫홈케어</a>
+			<a class="mx-2" href="index">펫홈케어</a>
 		</div>
 		<div class="col-auto pt-2">
 			<div class="grid grid-flow-col-dense gap-2 grid-rows-1 grid-cols-3 align-center">

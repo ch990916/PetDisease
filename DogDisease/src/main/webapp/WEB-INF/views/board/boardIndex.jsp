@@ -14,15 +14,14 @@
 	
 	function loadPost(){
 		$.ajax({
-			url: '/post.load',
+			url: '/dogDisease/post.load',
 			type:"GET",
 			data:{"page":page},
-			success: function(data){
-				alert(${page});
+			success: function(posts){
+				$.each(posts,function(ii,cc){
+					$("#loadPostContainer").append($("<div></div>").text(cc.pp_picture));
+				});
 				page+=5;
-			},
-			error: function(){
-				alert("Function Test");
 			}
 		});
 	}
@@ -37,12 +36,25 @@
 </script>
 </head>
 <body>
-<div class="h-full w-8/12 bg-white bg-opacity-25">
-	<div class="py-5 font-bold hover:text-gray-400" align="left">
-		<c:if test="${!empty sessionScope.user}">
-			<a href="board.write">글 쓰기</a>
-		</c:if>
+<div class="h-full w-8/12">
+	<c:if test="${!empty sessionScope.user }">
+	<div class="py-5 font-bold" align="left">
+			<button data-modal-target="default-modal" data-modal-toggle="default-modal" class="block hover:text-gray-400">글 쓰기</button>
+			
+			<div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+				<div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+					<div>
+						<form name="postWriteForm" action="post.write" onsubmit="return WriteCheck();" method="post" enctype="multipart/form-data">
+							<input name="token" value="${token }" type="hidden">
+							<input name="pp_content" class="w-full">
+							<input name="pp_picture" type="file">
+							<button class="block hover:text-gray-600">submit</button>
+						</form>
+					</div>
+				</div>	
+			</div>		
 	</div>
+	</c:if>
 	<h1 class="text-4xl font-bold">SNS Page</h1>
 	<c:forEach var="p" items="${posts }">
 		<div class="py-5 w-10/12" align="left">
@@ -90,6 +102,8 @@
 			</c:forEach>
 		</div>
 	</c:forEach>
+	<div id="loadPostContainer">
+	</div>
 </div>
 </body>
 </html>

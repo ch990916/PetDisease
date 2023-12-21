@@ -5,22 +5,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 </head>
 <body>
-	<div class="grid grid-cols-2">
+	<div class="grid grid-cols-2 mt-2">
 		<div class="col-auto">
-		<form name="loginForm" action="login" method="post" onsubmit="return loginCheck();">
-			<div class="grid grid-cols-2">
-				<div class="col-auto">
-					<input class="h-6 shadow appearance-none border rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="pm_id" type="text" placeholder="Username">
-					<input class="h-6 shadow appearance-none border rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="pm_pw" type="password" placeholder="Password">
+			<form action="login" onsubmit="return loginCheck();" method="post">
+				<div class="grid grid-cols-2">
+					<div>
+						<input class="h-6 w-32" style="appearance:none;" name="pm_id" placeholder="Username">
+						<input class="mt-1 h-6 w-32" style="appearance:none;" name="pm_pw" placeholder="Password" type="password">
+					</div>
+					<div>
+						<button class="pt-2 text-xl text-white font-bold hover:text-gray-400">로그인</button>
+					</div>
 				</div>
-					<button class="text-xl text-white font-bold">로그인</button>
-			</div>
-		</form>
+			</form>
 		</div>
 		<div class="col-auto">
-			<button class="pt-2 text-xl text-white font-bold" onclick="location.href='join'">회원가입</button>
+			<button class="pt-2 text-xl text-white font-bold hover:text-gray-400" onclick="location.href='join'">회원가입</button>
 		</div>
 	</div>
 </body>

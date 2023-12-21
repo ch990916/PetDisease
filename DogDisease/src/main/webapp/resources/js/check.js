@@ -59,8 +59,8 @@ function joinCheck(){
 }
 
 function loginCheck(){
-	var idField = document.loginForm.hm_id;
-	var pwField = document.loginForm.hm_pw;
+	var idField = document.loginForm.pm_id;
+	var pwField = document.loginForm.pm_pw;
 	
 	if(emptyCheck(idField)){
 		alert("id를 입력하세요");

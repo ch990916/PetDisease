@@ -7,16 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="grid grid-cols-2 grid-rows-2 place-items-center">
-		<div class="row-span-full place-self-end h-auto w-auto pb-2 pr-2">
-			<img src="resources/userfiles/${sessionScope.user.pm_photo }" style="max-height:50px; max-width:50px;">
+	<div class="grid grid-cols-2 mt-2">
+		<div class="col-auto h-auto w-auto mr-2 place-self-end">
+			<img src="resources/userfiles/${sessionScope.user.pm_photo }" style="max-height:60px; max-width:60px;">
 		</div>
-		<div class="flex col-auto">
-			ADMIN&nbsp;<span class="font-bold">${sessionScope.user.pm_nickname }</span>님 반갑습니다.
-		</div>
-		<div class="flex col-auto">
-			<a class="px-2 font-bold hover:text-white" href="admin.memberlist">회원관리</a>
-			<a class="px-2 font-bold hover:text-white" href="logout">로그아웃</a>
+		<div>
+			<p class="place-self-start">ADMIN&nbsp;<span class="font-bold">${sessionScope.user.pm_nickname }</span>님 반갑습니다.</p>
+			<a class="px-2 font-bold hover:text-white place-self-start" href="admin.memberlist">회원관리</a>
+			<a class="px-2 font-bold hover:text-white" href="memberInfo">회원정보</a>
+			<a class="px-2 font-bold hover:text-white place-self-start" href="logout">로그아웃</a>
 		</div>
 	</div>
 </body>

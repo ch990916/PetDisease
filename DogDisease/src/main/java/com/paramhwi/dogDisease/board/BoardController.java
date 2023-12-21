@@ -34,36 +34,16 @@ public class BoardController {
 		return "main/index";
 	}
 	
-	@RequestMapping(value = "/post.load", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Post> boardChange(HttpServletRequest req) {
+	@RequestMapping(value = "/post.load", method = RequestMethod.GET, produces="application/json; charset=utf-8")
+	public @ResponseBody List<Post> boardChange(HttpServletRequest req) {
 		return pDAO.loadPost(req);
 	}
 	
-	@RequestMapping(value = "/board.write", method = RequestMethod.GET)
-	public String writeGo(HttpServletRequest req) {	
-		if(mDAO.checkLogin(req)) {
-			tg.generate(req);
-			req.setAttribute("contentPage", "../board/postWrite.jsp");			
-		}
-		else {
-			System.out.println("login Check failed");
-			req.setAttribute("contentPage", "../board/boardIndex.jsp");
-		}
-		return "main/index";
-	}
-	
-	@RequestMapping(value = "/write.post", method = RequestMethod.POST)
+	@RequestMapping(value = "/post.write", method = RequestMethod.POST)
 	public String writePost(Post p, HttpServletRequest req) {	
-		if(mDAO.checkLogin(req)) {
-			pDAO.writePost(p, req);
-			pDAO.searchPage(req);
-			req.setAttribute("contentPage", "../board/boardIndex.jsp");		
-		}
-		else {			
-			req.setAttribute("contentPage", "../main/home.jsp");
-		}
-		return "main/index";
+		mDAO.checkLogin(req);
+		pDAO.writePost(p, req);
+		return boardGo(req);
 	}
 	
 	@RequestMapping(value = "/reply.write", method = RequestMethod.POST)
