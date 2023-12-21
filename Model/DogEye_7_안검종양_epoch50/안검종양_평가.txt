@@ -1,0 +1,10 @@
+Validating runs/detect/train4/weights/best.pt...
+Ultralytics YOLOv8.0.228 🚀 Python-3.10.12 torch-2.1.0+cu121 CUDA:0 (Tesla T4, 15102MiB)
+Model summary (fused): 218 layers, 25840918 parameters, 0 gradients, 78.7 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:14<00:00,  2.62it/s]
+                   all       1176       1176      0.999      0.457      0.483      0.479
+            No disease       1176        600          1          0     0.0093    0.00242
+          Eyelid tumor       1176        576      0.998      0.915      0.956      0.955
+Speed: 0.1ms preprocess, 4.1ms inference, 0.0ms loss, 1.5ms postprocess per image
+
+안검종양 검출은 95%가 나옴, 무증상은 검출은 하지만 박스 정확도가 1% 미만이여서 합계가 48% 정도 나옴
