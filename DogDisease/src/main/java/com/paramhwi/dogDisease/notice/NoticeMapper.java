@@ -2,7 +2,7 @@ package com.paramhwi.dogDisease.notice;
 
 import java.util.List;
 
-import com.paramhwi.dogDisease.board.SearchInfo;
+import com.paramhwi.dogDisease.SearchInfo;
 
 public interface NoticeMapper {
 	public abstract int writeNotice(Notice n);

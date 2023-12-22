@@ -34,8 +34,20 @@ var map = null;
 		});
 	}
 	
+	function mapSearchEvent(){
+		$("#locationInput").click(function(){
+			new daum.Postcode({
+		        oncomplete: function(data) {
+		        	 var roadAddr = data.roadAddress;
+	                document.getElementById("locationInput").value = roadAddr;
+		        }
+		    }).open();
+		})
+	}
+	
 	
 	$(function(){
+		mapSearchEvent();
 		navigator.geolocation.getCurrentPosition(function(loc){
 			var latitude = loc.coords.latitude;		
 			var longitude = loc.coords.longitude;		
@@ -74,16 +86,11 @@ var map = null;
 					success : function(result){
 						$("#locationCard").empty();
 						$.each(result.documents, function(i, b){
-							var nameTd = $("<td width='150px' height='100px'></td>").text(b.place_name);
-							var nameTr = $("<tr></tr>").append(nameTd);
-							var addrTd = $("<td width='150px' height='100px'></td>").text(b.address_name);
-							var addrTr = $("<tr></tr>").append(addrTd);
-							var table = $("<table border='1'></table>").append(nameTr, addrTr).attr("onclick","moveMap("+b.y+","+b.x+");").css("background-color","beige").css("margin","5px");
-							var subTd = $("<td></td>").append(table);
-							$("#locationCard").append(subTd);
-							if(i % 5 == 4){
-								$("#locationCard").append("<br>");
-							}
+							var myDt = $("<dt class='font-medium text-gray-900'></dt>").text(b.place_name);
+							var myDd = $("<dd class='mt-2 text-sm text-gray-500'></dd>").text(b.address_name);
+							var myDiv = $("<div class='border-t border-gray-200 pt-4 pb-4 bg-gray-100 hover:bg-gray-200 rounded-lg'>").append(myDt, myDd).attr("onclick","moveMap("+b.y+","+b.x+");");
+
+							$("#locationCard").append(myDiv);
 						})
 					}
 				})

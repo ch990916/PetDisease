@@ -17,16 +17,12 @@ import org.springframework.stereotype.Service;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.paramhwi.dogDisease.board.PostDAO;
 
 @Service
 public class MemberDAO {
 	
 	@Autowired
 	SqlSession ss;
-	
-	@Autowired
-	PostDAO pDAO;
 	
 	private SimpleDateFormat sdf;
 	
@@ -46,7 +42,7 @@ public class MemberDAO {
 					new DefaultFileRenamePolicy());
 		} catch (Exception e) {
 			e.printStackTrace();
-			req.setAttribute("joinResult", "사진 오류");
+			req.setAttribute("state", "사진 오류");
 			System.out.println("사진 오류");
 			return;
 		}
@@ -83,11 +79,11 @@ public class MemberDAO {
 			m.setPm_mail(mail);
 			
 			ss.getMapper(MemberMapper.class).joinMember(m);
-			req.setAttribute("state", "성공");
+			req.setAttribute("state", "회원가입 성공");
 			System.out.println("회원가입 성공");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("가입오류");
+			req.setAttribute("state", "오류로 회원가입에 실패하였습니다. 잠시 후 다시 시도해주세요");
 			File f = new File(path + "/" + mr.getFilesystemName("pm_photo"));
 			f.delete();
 		}
@@ -165,13 +161,11 @@ public class MemberDAO {
 	public void deleteMember(HttpServletRequest req) {
 		try {
 			Member user = (Member)req.getSession().getAttribute("user");
-			int userPost = ss.getMapper(MemberMapper.class).getPostCount(user);
 			if(ss.getMapper(MemberMapper.class).deleteMember(user) == 1) {		
 				req.setAttribute("state", "탈퇴 성공");
 				String path = req.getSession().getServletContext().getRealPath("resources/userfiles");
 				String file = URLDecoder.decode(user.getPm_photo(),"utf-8");
 				new File(path + "/" + file).delete();
-				pDAO.decreasePostCount(userPost);
 			}		
 		} catch (Exception e) {
 			e.printStackTrace();

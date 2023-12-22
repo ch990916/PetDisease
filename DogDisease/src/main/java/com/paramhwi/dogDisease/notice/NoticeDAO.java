@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.paramhwi.dogDisease.IntegratedAttribute;
-import com.paramhwi.dogDisease.board.Post;
-import com.paramhwi.dogDisease.board.PostMapper;
-import com.paramhwi.dogDisease.board.SearchInfo;
+import com.paramhwi.dogDisease.SearchInfo;
 import com.paramhwi.dogDisease.member.Member;
 
 @Service
@@ -37,6 +35,7 @@ public class NoticeDAO {
 	public void searchSessionReset(HttpServletRequest req) {
 		req.getSession().setAttribute("searchWord", null);
 	}
+	
 	
 	public void searchPage(int page, HttpServletRequest req) {
 		String searchWord = (String) req.getSession().getAttribute("searchWord");
@@ -109,8 +108,6 @@ public class NoticeDAO {
 			System.out.println("공지사항 수정 실패(토큰 불일치)");
 			return;
 		}
-		Member user = (Member) req.getSession().getAttribute("user");
-		n.setPn_writer(user.getPm_id());
 		if(ss.getMapper(NoticeMapper.class).modifyNotice(n) == 1) {
 			req.setAttribute("state", "공지사항 수정 성공");
 			req.getSession().setAttribute("lastToken", token);

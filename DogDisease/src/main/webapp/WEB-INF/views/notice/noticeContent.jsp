@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="areaTable">	
+<div class="smallArea">	
 		<table id="noticeWriteTable">
 			<form id="noticeNo" onsubmit="return noticeDeleteCheck();" action="notice.board.del">
 			<input value="${notice.pn_no }" name="no" type="hidden">

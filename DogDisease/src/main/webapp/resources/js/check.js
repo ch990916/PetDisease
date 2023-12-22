@@ -168,3 +168,15 @@ function noticeDeleteCheck(){
 	confirm("삭제하시겠습니까?");
 	return true;
 }
+
+function diagnosisPhotoCheck(){
+	var photoField = document.diagnosisPhotoForm.pm_photo;
+	
+	if(notMatchFileType(photoField, "jpg") && notMatchFileType(photoField, "png") && emptyCheck(photoField)){
+		alert("사진을 선택해주세요");
+		photoField.value = "";
+		photoField.focus();		
+		return false;
+	}
+	return true;
+}

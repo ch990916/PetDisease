@@ -12,6 +12,8 @@
 <link href="resources/css/join.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/board.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/notice.css" rel="stylesheet" type="text/css" />
+<link href="resources/css/map.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1/dist/tailwind.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script type = "text/javascript" src="resources/js/myvalidchecker.js"></script>
 <script type = "text/javascript" src="resources/js/check.js"></script>
@@ -21,13 +23,15 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
+<input id="state" type="hidden" value="${state }">
 <div id="background">
 <div id="idxBgTblArea">
+	<div style="width:100vw"></div>
 	<table id="idxBgTbl">
 	<tr><td><table id="indexTable">
 		<tr>
 		<td class="title"><a href="index">&nbsp;펫홈케어</a></td>
-		<th class="menu">진단&nbsp;<span class="material-symbols-outlined">home_health</span></th>
+		<th class="menu"><a href="diagnosis.go">진단&nbsp;<span class="material-symbols-outlined">home_health</span></a></th>
 		<th class="menu"><a href="notice.board.go?page=1">공지사항</a></th>
 		<th class="menu"><a href="board.go?page=1">게시판</a></th>
 		<th class="menu"><a href="map.go">병원찾기</a></th>
@@ -35,7 +39,7 @@
 		</tr>
 	</table></td></tr>
 	</table>
-	</div>
+</div>
 	<table class="mainPage" align="center">
 		<tr align="center"><td><jsp:include page="${contentPage }"></jsp:include></td></tr>
 	</table>

@@ -1,25 +1,30 @@
 @charset "UTF-8";
 
-.joinTable img{
-	width:50px;
-	height:50px;
+.joinForm{
+	margin-left: 20px;
+	margin-right: 20px;
+	width : 70%;
+	font-family: 'Hi Melody', sans-serif;
+}
+
+.joinForm img{
 	object-fit:cover;
 }
 
-
-#birth1{
-	width:80px;
+.joinForm input{
+	font-weight: bold;
 }
 
-#birth2{
-	width:10px;
+#photoLabel{
+	background-color:white;
 }
 
+#photoLabel:hover{
+	background-color:#e2e8f0;
+}
 
-.joinForm td{
-	align-items: center;
-	align-content: center;
-	text-align: center;
+#joinTitle{
+	font-size: 30pt;
 }
 
 .joinForm input{
@@ -28,25 +33,6 @@
 	text-align: center;
 }
 
-.joinForm tr{
-	height:40px;
-}
-
-.joinTable{
-	margin-left:auto;
-	margin-right:auto;
-	padding-bottom : 100px;
-	margin-bottom:300px;
-	width:70%;
-	background-color: #F3EED9;
-	border: 2pt solid black;
-}
-
-.joinTable td{
-	align-content: center;
-}
-
-.joinTable button{
-	margin: 20px;
-	padding: 10px;
+#pm_jumin2{
+	width:20px;
 }

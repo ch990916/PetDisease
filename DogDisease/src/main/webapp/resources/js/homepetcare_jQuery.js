@@ -33,10 +33,25 @@ function addressSearchEvent(){
 	})
 }
 
+function photoChangeEvent(){
+	$("#pm_photo").change(function(e){
+		const preview = new FileReader();
+		preview.onload = function(e){
+			document.getElementById('profilePhoto').src = e.target.result;
+		}
+		preview.readAsDataURL(document.getElementById("pm_photo").files[0]);
+		
+	})
+}
+
 
 
 $(function(){
+	if(document.getElementById('state').value != ""){		
+		alert(document.getElementById('state').value);
+	}
 	revealMenuEvent();
 	joinIdKeyEvent();
-	addressSearchEvent()
+	addressSearchEvent();
+	photoChangeEvent();
 });

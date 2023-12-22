@@ -24,6 +24,7 @@ public class IntegratedAttribute {
 	public void setPostNumInPage(int postNumInPage) {
 		this.postNumInPage = postNumInPage;
 	}
+	
 
 
 	public int getNoticeNumInPage() {

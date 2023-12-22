@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="areaTable">
+<div class="smallArea">
 	<form action="notice.board.modify" name="noticeWriteForm" onsubmit="return noticeWriteCheck();" method="POST">
 	<input type="hidden" name="token" value="${token }" readonly="true">
 	<input type="hidden" name="pn_no" value="${notice.pn_no }" readonly="true">

@@ -32,3 +32,42 @@
 	margin-left:auto;
 	margin-right:auto;
 }
+
+#noticeTitleCol{
+	width: 500px;
+}
+
+#noticeTable{
+	margin:40px;
+}
+
+#noticeTable > tr{
+	margin: 40px;
+}
+
+.noticeIndexTable{
+	border-collapse: collapse;
+	width:100%;
+}
+
+.noticeIndexTable img{
+	width: 20px;
+	height: 20px;
+	object-fit:cover;
+}
+
+.noticeIndexTable th{
+	text-align: center;
+	border-top: 3px solid #444444;
+	border-bottom: 3px solid #444444;
+	width:100px;
+}
+
+.noticeIndexTable tr:hover td{
+	background-color: lightgray !important;
+}
+
+.noticeIndexTable td{
+	text-align: center;
+	border-bottom: 1px solid #444444;
+}
