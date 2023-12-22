@@ -15,11 +15,13 @@ app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024 # 우선 업로드 파일 �
 # pt_path_2 = "/best_2.pt를/넣은/path/best_2.pt" # 서버상에 best_2.pt (결막염모델) 있는 절대 경로
 # pt_path_5 = "/best_5.pt를/넣은/path/best_5.pt" # 서버상에 best_5.pt (결막염모델) 있는 절대 경로
 # pt_path_7 = "/best_7.pt를/넣은/path/best_7.pt" # 서버상에 best_7.pt (결막염모델) 있는 절대 경로
+# pt_path_9 = "/best_9.pt를/넣은/path/best_9.pt" # 서버상에 best_9.pt (결막염모델) 있는 절대 경로
 pt_path_0 = "best_0.pt" # 동일한 폴더에 넣었을때 사용할 수 있는 상대경로 스타일
 pt_path_1 = "best_1.pt"
 pt_path_2 = "best_2.pt"
 pt_path_5 = "best_5.pt"
 pt_path_7 = "best_7.pt"
+pt_path_9 = "best_9.pt"
 
 def predict_image_model(pt_path, img_path):# 이미지 파일이 있는 path
   model = YOLO(pt_path)
@@ -72,9 +74,11 @@ def predictDo():
     results_2 = predict_image_model(pt_path_2, img)
     box_2 = box_dict(results_2)
     results_5 = predict_image_model(pt_path_5, img)
-    box_5 = box_dict(box_5)
+    box_5 = box_dict(results_5)
     results_7 = predict_image_model(pt_path_7, img)
     box_7 = box_dict(results_7)
+    results_9 = predict_image_model(pt_path_9, img)
+    box_9 = box_dict(results_9)
 
     box = {
       "결막염": box_0,
@@ -82,9 +86,10 @@ def predictDo():
       "백내장": box_2,
       "안검내반증": box_7,
       "안검종양": box_7,
+      "핵경화": box_9,
       }
     json = jsonify(box)
     return json
 
 if __name__ == '__main__':
-    app.run(host="127.0.0.1", port=2222, threaded=True)
+    app.run()
