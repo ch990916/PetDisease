@@ -36,7 +36,7 @@ function addressSearchEvent(){
 
 
 $(function(){
-	//revealMenuEvent();
+	revealMenuEvent();
 	joinIdKeyEvent();
 	addressSearchEvent();
 });

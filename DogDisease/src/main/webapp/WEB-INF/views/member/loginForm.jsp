@@ -19,7 +19,7 @@
 						<form name="loginForm" action="login" onsubmit="return loginCheck();" method="post">
 							<div class="grid grid-rows-2 bg-indigo-100">
 								<div class="p-2">
-									<p>ID&nbsp;<input class="p-2 h-6 w-32" style="appearance:none;" name="pm_id" placeholder="Username"></p>
+									<p>ID&nbsp;<input class="p-2 h-6 w-32" style="appearance:none;" name="pm_id" placeholder="Username" autofocus></p>
 									<p>PW&nbsp;<input class="p-2 mt-1 h-6 w-32" style="appearance:none;" name="pm_pw" type="password"></p>
 								</div>
 								<div class="p-2" align="left">
