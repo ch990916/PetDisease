@@ -1,0 +1,10 @@
+Validating runs/detect/train2/weights/best.pt...
+Ultralytics YOLOv8.0.228 🚀 Python-3.10.12 torch-2.1.0+cu121 CUDA:0 (Tesla T4, 15102MiB)
+Model summary (fused): 218 layers, 25840918 parameters, 0 gradients, 78.7 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 108/108 [00:45<00:00,  2.40it/s]
+                   all       3436       3436      0.638      0.462      0.488      0.465
+            No disease       3436        861      0.285      0.019     0.0315    0.00886
+              Cataract       3436       2575      0.991      0.905      0.944      0.922
+Speed: 0.1ms preprocess, 4.4ms inference, 0.0ms loss, 1.8ms postprocess per image
+
+궤양성각막질환에 대한 정답율은  92.2%, 무증상에 박스 그리는 것에 대한 정답율은 1% 미만 이기에 평균정답율이 46%가 나온다
