@@ -16,8 +16,18 @@ model = torch.hub.load('ultralytics/yolov5', 'custom', path='pet_detect.pt', for
 def jsonify(results):
     box_dict_list = []
     for result in results.xyxy[0]:
+        
+        class_num = int(result[5])
+        if class_num == 0 :
+            cls = '미란/궤양'
+        elif class_num == 1 :
+            cls = '결절/종양'
+        else :
+            cls = '농포/여드름'
+
         box_dict = {
-            'cls': str(int(result[5].round())),  # 클래스 정보 - # 0 - 미란/궤양, 1 - 결절/종양, 2 - 농포/여드름
+            'cls': cls,
+            'cls_num': str(int(result[5].round())),  # 클래스 정보 - # 0 - 미란/궤양, 1 - 결절/종양, 2 - 농포/여드름
             'conf': '{:.2f}'.format(result[4].item()),  # 신뢰도
             'orig_shape': [(result[2] - result[0]).round().item(), (result[3] - result[1]).round().item()],   # width, height 계산
             'xyxy': [round(v.item()) for v in result[:4]],  # 기본 좌표정보
