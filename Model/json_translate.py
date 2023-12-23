@@ -33,14 +33,21 @@ def box_dict(results):
   # Process results list
   for result in results:
       boxes = result.boxes.cpu().numpy()  # Boxes object for bbox outputs
-  box = boxes[0]
-  box_dict = {
-      'cls': str(round(box.cls[0])), 
-      'conf': str(box.conf[0]), # json은 float을 변환 불가,
-      'orig_shape': [box.orig_shape[0], box.orig_shape[1]], # [width, height]
-      'xyxy': [round(v) for v in box.xyxy[0]], # [x시작좌표, y시작좌표, x종료좌표, y종료좌표]
-  }
-  return box_dict
+  try:
+    box = boxes[0]
+  except:
+    return {
+        'cls': '0',
+        'conf': str(0.0001)
+    }
+  else:
+    box_dict = {
+        'cls': str(round(box.cls[0])), # 0 - 무증상, 1 - 결막염, 2 - 궤양성각막질환 , 3 - 백내장, 4 - 비궤양성각막질환, 5 - 색소침착성각막염, 6 - 안검내반증, 7 - 안검염, 8 - 안검종양, 9 - 유루증, 10 - 핵경화
+        'conf': str(box.conf[0]), # json은 float을 변환 불가,
+        'orig_shape': [box.orig_shape[0], box.orig_shape[1]], # [width, height]
+        'xyxy': [round(v) for v in box.xyxy[0]], # [x시작좌표, y시작좌표, x종료좌표, y종료좌표]
+    }
+    return box_dict
 
 # 딕셔너리를 받아서 json 형태로 반환
 def jsonify(box_dict):
@@ -91,15 +98,12 @@ def predictDo():
         pred_disease = diease_list[i]
         j = i
     
+    if max_conf == 0.0001:
+      pred_disease = "무증상"
     box = {
-      pred_disease: box_list[j], # 가장 신뢰도 값이 높은 결과 1개
-      # "결막염": box_0,
-      # "궤양성각막질환": box_1,
-      # "백내장": box_2,
-      # "안검내반증": box_5,
-      # "안검종양": box_7,
-      # "핵경화": box_9, # 만약 모든 질병 모델을 돌린 결과를 알고 싶으면 주석 해제
-      }
+        "name": pred_disease,
+        "conf": max_conf,
+    }
     json = jsonify(box)
     return json
 
