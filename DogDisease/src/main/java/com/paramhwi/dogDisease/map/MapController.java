@@ -13,8 +13,13 @@ import com.paramhwi.dogDisease.member.MemberDAO;
 public class MapController {
 	
 	@Autowired
+<<<<<<< HEAD
 	private MemberDAO mDAO;
 
+=======
+	MemberDAO mDAO;
+	
+>>>>>>> origin/branch_JinMyeong
 	@RequestMapping(value="/map.go", method=RequestMethod.GET)
 	public String MapGo(HttpServletRequest req) {
 		mDAO.checkLogin(req);

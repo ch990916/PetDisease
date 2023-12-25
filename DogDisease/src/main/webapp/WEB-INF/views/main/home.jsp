@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<div id="main1"></div>
 	<br><br><br><br><br><br>
 	<img src="resources/img/main1.PNG" style="width: 600px; height: 400px;" class="bg-gray-200">
@@ -37,5 +38,10 @@
 	
 
 	
+=======
+	<div class="h-screen" align="center">
+		<div class="text-4xl text-gray-600">소개말</div>
+	</div>	
+>>>>>>> origin/branch_JinMyeong
 </body>
 </html>

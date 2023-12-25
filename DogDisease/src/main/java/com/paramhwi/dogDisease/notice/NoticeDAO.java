@@ -1,6 +1,10 @@
 package com.paramhwi.dogDisease.notice;
 
+<<<<<<< HEAD
 import java.math.BigDecimal;
+=======
+
+>>>>>>> origin/branch_JinMyeong
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.paramhwi.dogDisease.IntegratedAttribute;
+<<<<<<< HEAD
 import com.paramhwi.dogDisease.SearchInfo;
+=======
+import com.paramhwi.dogDisease.board.SearchInfo;
+>>>>>>> origin/branch_JinMyeong
 import com.paramhwi.dogDisease.member.Member;
 
 @Service
@@ -36,7 +44,10 @@ public class NoticeDAO {
 		req.getSession().setAttribute("searchWord", null);
 	}
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> origin/branch_JinMyeong
 	public void searchPage(int page, HttpServletRequest req) {
 		String searchWord = (String) req.getSession().getAttribute("searchWord");
 		int noticeCount = allNoticeCount;
@@ -60,23 +71,40 @@ public class NoticeDAO {
 		String token = req.getParameter("token");
 		String lastToken = (String) req.getSession().getAttribute("lastToken");
 		if(lastToken != null && lastToken.equals(token)) {
+<<<<<<< HEAD
 			req.setAttribute("state", "글쓰기 실패");
 			System.out.println("글쓰기 실패");
+=======
+			req.setAttribute("result", "글쓰기 실패");
+>>>>>>> origin/branch_JinMyeong
 			return;
 		}
 		Member user = (Member) req.getSession().getAttribute("user");
 		n.setPn_writer(user.getPm_id());
+<<<<<<< HEAD
 		if(ss.getMapper(NoticeMapper.class).writeNotice(n) == 1) {
 			req.setAttribute("state", "글쓰기 성공");
+=======
+		n.setPn_title(req.getParameter("pn_title"));
+		n.setPn_content(req.getParameter("pn_title").replace("\n", "<br>"));
+		if(ss.getMapper(NoticeMapper.class).writeNotice(n) == 1) {
+			req.setAttribute("result", "글쓰기 성공");
+>>>>>>> origin/branch_JinMyeong
 			allNoticeCount++;
 			req.getSession().setAttribute("lastToken", token);
 		}
 	}
 	
 	public void getNoticeContent(HttpServletRequest req) {
+<<<<<<< HEAD
 		BigDecimal no = new BigDecimal(req.getParameter("no"));
 		Notice tmp = new Notice();
 		tmp.setPn_no(no);
+=======
+		Integer pn_no = Integer.parseInt(req.getParameter("pn_no"));
+		Notice tmp = new Notice();
+		tmp.setPn_no(pn_no);
+>>>>>>> origin/branch_JinMyeong
 		Notice n = ss.getMapper(NoticeMapper.class).searchNoticeContent(tmp);
 		req.setAttribute("notice", n);
 		
@@ -91,6 +119,7 @@ public class NoticeDAO {
 		}
 	}
 	
+<<<<<<< HEAD
 	public void noticeDelete(HttpServletRequest req) {
 		BigDecimal no = new BigDecimal(req.getParameter("no"));
 		Notice tmp = new Notice();
@@ -114,4 +143,25 @@ public class NoticeDAO {
 		}
 	}
 
+=======
+	public void DeleteNotice(HttpServletRequest req) {
+		Notice n = new Notice();
+		n.setPn_no(Integer.parseInt(req.getParameter("pn_no")));
+		if(ss.getMapper(NoticeMapper.class).deleteNotice(n)==1) {
+			req.setAttribute("result", "Notice Deleted");
+		}else {
+			req.setAttribute("result", "Notice Delete Failed");
+		}
+	}
+	
+	public void UpdateNotice(Notice n, HttpServletRequest req) {
+		n.setPn_title(req.getParameter("pn_title"));
+		n.setPn_content(req.getParameter("pn_content").replace("<br>","").replace("\n", "<br>"));
+		if(ss.getMapper(NoticeMapper.class).updateNotice(n)==1) {
+			req.setAttribute("result", "Notice Updated");
+		}else {
+			req.setAttribute("result", "Notice Update Failed");
+		}
+	}
+>>>>>>> origin/branch_JinMyeong
 }

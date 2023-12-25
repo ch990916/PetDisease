@@ -11,7 +11,11 @@
 			#{pm_birthday},
 			#{pm_photo},
 			#{pm_mail},
+<<<<<<< HEAD
 			3
+=======
+			#{pm_admin}
+>>>>>>> origin/branch_JinMyeong
 		)
 	</insert>
 	<select id="getMemberByID" parameterType="com.paramhwi.dogDisease.member.Member" resultType="com.paramhwi.dogDisease.member.Member">
@@ -31,18 +35,31 @@
 		set pm_nickname=#{pm_nickname},
 			pm_pw=#{pm_pw},
 			pm_address=#{pm_address},
+<<<<<<< HEAD
 			pm_photo=#{pm_photo},
 			pm_mail=#{pm_mail}
+=======
+			pm_photo=#{pm_photo}
+>>>>>>> origin/branch_JinMyeong
 		where pm_id=#{pm_id}
 	</update>
 	<select id="getPostCount" parameterType="com.paramhwi.dogDisease.member.Member" resultType="java.lang.Integer">
 		select count(*)
+<<<<<<< HEAD
 		from homepetcare_post
 		where hp_writer=#{pm_id}
 	</select>
 	<select id="adminMemberGet" resultType="com.paramhwi.dogDisease.member.Member">
 		select * from petdisease_member
 		order by pm_admin desc, pm_id
+=======
+		from petdisease_post
+		where pp_writer=#{pm_id}
+	</select>
+	<select id="adminMemberGet" resultType="com.paramhwi.dogDisease.member.Member">
+		select * from petdisease_member
+		order by pm_admin desc,pm_id
+>>>>>>> origin/branch_JinMyeong
 	</select>
 	<update id="updateAdmin" parameterType="com.paramhwi.dogDisease.member.Member">
 		update petdisease_member

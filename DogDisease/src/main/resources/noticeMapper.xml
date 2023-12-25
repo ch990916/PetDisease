@@ -11,7 +11,11 @@
 			sysdate
 		)
 	</insert>
+<<<<<<< HEAD
 	<select id="searchNoticePage" parameterType="com.paramhwi.dogDisease.SearchInfo" resultType="com.paramhwi.dogDisease.notice.Notice">
+=======
+	<select id="searchNoticePage" parameterType="com.paramhwi.dogDisease.board.SearchInfo" resultType="com.paramhwi.dogDisease.notice.Notice">
+>>>>>>> origin/branch_JinMyeong
 		select *
 		from (
 			select *
@@ -50,6 +54,7 @@
 		where pn_no=#{pn_no}))
 		where pn_no=#{pn_no}
 	</select>
+<<<<<<< HEAD
 	<select id="getAllNoticeCount" parameterType="com.paramhwi.dogDisease.SearchInfo" resultType="java.lang.Integer">
 		select count(*) from petdisease_notice
 		where pn_title like '%'||#{searchWord}||'%' or pn_writer like '%'||#{searchWord}||'%'
@@ -63,6 +68,22 @@
 		set pn_title=#{pn_title},
 			pn_content=#{pn_content},
 			pn_date=sysdate
+=======
+	
+	<select id="getAllNoticeCount" parameterType="com.paramhwi.dogDisease.board.SearchInfo" resultType="java.lang.Integer">
+		select count(*) from petdisease_notice
+		where pn_title like '%'||#{searchWord}||'%' or pn_writer like '%'||#{searchWord}||'%'
+	</select>
+	
+	<delete id="deleteNotice" parameterType="com.paramhwi.dogDisease.notice.Notice">
+		delete from petdisease_notice
+		where pn_no = #{pn_no}
+	</delete>
+	
+	<update id="updateNotice" parameterType="com.paramhwi.dogDisease.notice.Notice">
+		update petdisease_notice
+		set pn_title = #{pn_title}, pn_content=#{pn_content}
+>>>>>>> origin/branch_JinMyeong
 		where pn_no=#{pn_no}
 	</update>
 </mapper>

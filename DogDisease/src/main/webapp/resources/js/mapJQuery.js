@@ -34,6 +34,7 @@ var map = null;
 		});
 	}
 	
+<<<<<<< HEAD
 	function mapSearchEvent(){
 		$("#locationInput").click(function(){
 			new daum.Postcode({
@@ -48,6 +49,10 @@ var map = null;
 	
 	$(function(){
 		mapSearchEvent();
+=======
+	
+	$(function(){
+>>>>>>> origin/branch_JinMyeong
 		navigator.geolocation.getCurrentPosition(function(loc){
 			var latitude = loc.coords.latitude;		
 			var longitude = loc.coords.longitude;		
@@ -86,11 +91,20 @@ var map = null;
 					success : function(result){
 						$("#locationCard").empty();
 						$.each(result.documents, function(i, b){
+<<<<<<< HEAD
 							var myDt = $("<dt class='font-medium text-gray-900 font-bold'></dt>").text(b.place_name);
 							var myDd = $("<dd class='mt-2 text-sm text-gray-500'></dd>").text(b.address_name);
 							var myDiv = $("<div class='border-t border-gray-200 pt-4 pb-4 bg-gray-100 hover:bg-gray-200 rounded-lg'>").append(myDt, myDd).attr("onclick","moveMap("+b.y+","+b.x+");");
 
 							$("#locationCard").append(myDiv);
+=======
+							var nameTd = $("<div class='row-auto bg-indigo-400 hover:text-white'></div>").text(b.place_name);
+							var addrTd = $("<div class='row-auto bg-purple-400 text-sm'></div>").text(b.address_name);
+							var resultwrapper = $("<div class='grid grid-cols-1 grid-rows-2></div>").append(nameTd,addrTd);
+							var table = $("<div class='col-auto row-auto m-2 bg-white'></div>").append(resultwrapper).attr("onclick","moveMap("+b.y+","+b.x+");");
+							var subTd = $("<div class='grid grid-cols-2 grid-rows-auto'></div>").append(table);
+							$("#locationCard").append(subTd);
+>>>>>>> origin/branch_JinMyeong
 						})
 					}
 				})

@@ -44,6 +44,10 @@
 		<beans:property name="mapperLocations">
 			<beans:list>
 				<beans:value>classpath:memberMapper.xml</beans:value>
+<<<<<<< HEAD
+=======
+				<beans:value>classpath:postMapper.xml</beans:value>
+>>>>>>> origin/branch_JinMyeong
 				<beans:value>classpath:noticeMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
@@ -55,7 +59,12 @@
 	</beans:bean>
 	
 	<beans:bean id="ia" class="com.paramhwi.dogDisease.IntegratedAttribute">
+<<<<<<< HEAD
 		<beans:constructor-arg name="postNumInPage" value="10"></beans:constructor-arg>
+=======
+		<beans:constructor-arg name="postNumInPage" value="5"></beans:constructor-arg>
+		<beans:constructor-arg name="fileNumInPage" value="10"></beans:constructor-arg>
+>>>>>>> origin/branch_JinMyeong
 		<beans:constructor-arg name="noticeNumInPage" value="10"></beans:constructor-arg>
 	</beans:bean>
 

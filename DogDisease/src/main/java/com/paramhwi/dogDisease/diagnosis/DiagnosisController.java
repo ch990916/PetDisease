@@ -11,6 +11,7 @@ import com.paramhwi.dogDisease.member.MemberDAO;
 
 @Controller
 public class DiagnosisController {
+<<<<<<< HEAD
 	
 	@Autowired
 	private MemberDAO mDAO;
@@ -19,6 +20,16 @@ public class DiagnosisController {
 	public String MapGo(HttpServletRequest req) {
 		mDAO.checkLogin(req);
 		req.setAttribute("contentPage", "../diagnosis/sendPhoto.jsp");
+=======
+
+	@Autowired
+	MemberDAO mDAO;
+	
+	@RequestMapping(value="/diagnosis.go", method=RequestMethod.GET)
+	public String diagnosisGo(HttpServletRequest req) {
+		mDAO.checkLogin(req);
+		req.setAttribute("contentPage", "../diagnosis/diagnosis.jsp");
+>>>>>>> origin/branch_JinMyeong
 		return "main/index";
 	}
 }

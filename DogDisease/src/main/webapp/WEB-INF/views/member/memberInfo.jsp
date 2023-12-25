@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 <div class="smallArea">
 <form align="left" class="joinForm" name="memberInfoForm" onsubmit="return memberUpdateCheck();" action="member.update" method="post" enctype="multipart/form-data">
 <h1 class="font-bold" id="joinTitle" align="center">
@@ -109,6 +110,38 @@
   	<button type="button" onclick="return withdrawCheck();" class="text-xl font-semibold leading-6 text-gray-900">탈퇴</button>
     <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">수정</button>
   </div>
+=======
+<div class="h-full">
+	<h1 class="text-2xl font-bold">회원정보&emsp;&emsp;</h1>
+	<div class="mt-8">
+		<form name="memberInfoForm" onsubmit="return updateCheck();" action="member.update" method="post" enctype="multipart/form-data">
+		<div class="w-6/12 h-auto grid grid-cols-2 grid-rows-auto place-items-start shadow-md bg-gray-200">
+			<div class="m-2 text-xl font-bold">ID</div>
+			<div class="m-2"><input name="pm_id" readonly="readonly" value="${sessionScope.user.pm_id }"></div>
+			<div class="m-2 text-xl font-bold">PW</div>
+			<div class="m-2"><input name="pm_pw" value="${sessionScope.user.pm_pw }"></div>
+			<div class="m-2 text-xl font-bold">PW 확인</div>
+			<div class="m-2"><input name="pm_pwck" value="${sessionScope.user.pm_pw }"></div>	
+			<div class="m-2 text-xl font-bold">닉네임</div>
+			<div class="m-2"><input name="pm_nickname" value="${sessionScope.user.pm_nickname }"></div>
+			<div class="m-2 text-xl font-bold">생년월일</div>
+			<div class="m-2"><fmt:formatDate value="${sessionScope.user.pm_birthday }" /></div>
+			<div class="m-2 text-xl font-bold">우편번호</div>
+			<div class="m-2"><input name="pm_address1" value="${address1 }"></div>	
+			<div class="m-2 text-xl font-bold">주소</div>
+			<div class="m-2"><input name="pm_address2" value="${address2 }"></div>	
+			<div class="m-2 text-xl font-bold">상세주소</div>
+			<div class="m-2"><input name="pm_address3" value="${address3 }"></div>	
+			<div class="m-2 text-xl font-bold">프로필</div>
+			<div class="m-2"><img src="resources/userfiles/${sessionScope.user.pm_photo }" style="max-height:100px; max-width:100px;"></div>
+			<div class="m-2 text-xl font-bold">프로필 변경</div>
+			<div class="m-2"><input name="pm_photo" type="file"></div>
+		</div>
+			<button class="p-2 rounded-lg text-xl font-bold hover:text-gray-600 block shadow-md">수정</button>
+		</form>
+		<button class="p-2 rounded-lg text-xl font-bold hover:text-gray-600 block shadow-md" onclick="return deleteCheck();">탈퇴</button>
+	</div>
+>>>>>>> origin/branch_JinMyeong
 </div>
 </body>
 </html>
