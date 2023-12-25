@@ -49,7 +49,7 @@
 		</div>
 	</div>
 <footer class="pt-4 bg-gray-600 h-24">
-        <p class="place-self-center">회사 정보 | 접종 정보 | 이용 약관 | 개인정보 보호 정책 | 연락처 정보</p>
+        <p class="place-self-center"></p>
 </footer>
 </body>
 </html>

@@ -10,11 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="h-full">
-	<h1 class="text-2xl font-bold">회원정보&emsp;&emsp;</h1>
+<div class="h-screen w-4/12">
+	<h1 class="text-2xl font-bold">회원정보</h1>
 	<div class="mt-8">
 		<form name="memberInfoForm" onsubmit="return updateCheck();" action="member.update" method="post" enctype="multipart/form-data">
-		<div class="w-6/12 h-auto grid grid-cols-2 grid-rows-auto place-items-start shadow-md bg-gray-200">
+		<div class="h-auto grid grid-cols-2 grid-rows-auto place-items-start shadow-md bg-gray-200">
 			<div class="m-2 text-xl font-bold">ID</div>
 			<div class="m-2"><input name="pm_id" readonly="readonly" value="${sessionScope.user.pm_id }"></div>
 			<div class="m-2 text-xl font-bold">PW</div>
@@ -36,9 +36,13 @@
 			<div class="m-2 text-xl font-bold">프로필 변경</div>
 			<div class="m-2"><input name="pm_photo" type="file"></div>
 		</div>
-			<button class="p-2 rounded-lg text-xl font-bold hover:text-gray-600 block shadow-md">수정</button>
+		<div class="flex" align="left">
+			<button class="p-2 rounded-lg text-xl font-bold hover:text-white hover:bg-gray-700 block shadow-md">수정</button>
+		</div>
 		</form>
-		<button class="p-2 rounded-lg text-xl font-bold hover:text-gray-600 block shadow-md" onclick="return deleteCheck();">탈퇴</button>
+		<div align="left">
+		<button class="p-2 rounded-lg text-xl font-bold hover:text-white hover:bg-gray-700 block shadow-md" onclick="return deleteCheck();">탈퇴</button>
+		</div>
 	</div>
 </div>
 </body>

@@ -13,7 +13,7 @@
 
 </header>
 <body>
-<div class="h-screen w-6/12 shadow-md" align="center">
+<div class="h-screen w-6/12" align="center">
 	<div class="grid grid-cols-2">
 		<div class="col-auto place-self-start">
 			<h1 class="text-4xl font-bold">공지사항</h1>
@@ -24,9 +24,9 @@
 			</c:if>
 		</div>
 	</div>
-	<div class="table mt-4 w-full border-solid border-2 border-white" align="center">
+	<div class="table mt-4 w-full h-auto shadow-md" align="center">
 		<table class="postIndexTable">
-			<tr>
+			<tr class="text-xl font-bold border-solid border-2 border-gray-700">
 				<th>제목</th>
 				<th>날짜</th>
 				<th>작성자</th>
@@ -48,9 +48,9 @@
 		</div>		 
 		<div class="mt-4"align="right">
 			<form action="notice.board.search" >
-				<div>
+				<div class="p-2">
 					<input name="searchWord" id="searchInput">
-					<button>검색</button>
+					<button class="p-2 font-bold rounded-lg hover:text-white hover:bg-gray-700">검색</button>
 				</div>
 			</form>
 		</div>
