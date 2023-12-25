@@ -7,6 +7,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -247,9 +248,9 @@ public class MemberDAO {
 	public void adminMemberDelete(Member m,HttpServletRequest req) {
 		m.setPm_id(req.getParameter("pm_id"));
 		if(ss.getMapper(MemberMapper.class).deleteMember(m)==1){
-			req.setAttribute("state", "Memeber Deleted");
+			req.setAttribute("result", "Memeber Deleted");
 		}else {
-			req.setAttribute("state", "Member Delete Failed");
+			req.setAttribute("result", "Member Delete Failed");
 		}
 	}
 	

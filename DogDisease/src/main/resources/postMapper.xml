@@ -47,8 +47,8 @@
 	
 	<select id="getReply" parameterType="com.paramhwi.dogDisease.board.SearchInfo2" resultType="com.paramhwi.dogDisease.board.PostReply">
 		select *
-		from petdisease_reply
-		where pr_pp_no=#{pp_no}
+		from petdisease_reply,petdisease_member
+		where pr_pp_no=#{pp_no} and pm_id=pr_writer
 		order by pr_date
 	</select>
 	

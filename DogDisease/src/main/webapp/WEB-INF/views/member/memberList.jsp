@@ -9,22 +9,36 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 </head>
 <body>
-	<div class="h-screen">
-		<h1 class="text-2xl font-bold">회원 목록</h1>
-		<table class="border-collapse border border-slate-400 mt-10 min-h-4/6 shadow-lg">
-			<tr class="mb-4 h-auto">
-				<td class="p-2 w-4/12 text-xl font-bold">ID</td>
-				<td class="p-2 w-4/12 text-xl font-bold">닉네임</td>
-				<td class="p-2 w-4/12 text-xl font-bold">이메일</td>
+<div class="smallArea">
+	<h1 class="font-bold" id="joinTitle" align="center">회원 목록</h1>
+	<div class="space-y-12">
+		<div class="mt-2">
+		<table class="w-full shadow-lg">
+			<tr class="mb-4 h-auto border border-slate-300">
+				<td class="p-2 text-xl font-bold">ID</td>
+				<td class="p-2 text-xl font-bold">권한</td>
+				<td class="p-2 text-xl font-bold">닉네임</td>
+				<td class="p-2 text-xl font-bold">이메일</td>
 			</tr>
 				<c:forEach var="m" items="${members }">
 					<tr class="mb-2 h-auto">
 						<td class="p-2 border border-slate-300"><a href="admin.memberInfo?id=${m.pm_id }" class="font-bold hover:text-gray-400">${m.pm_id }</a></td>
+						<td class="p-2 border border-slate-300">
+							<c:choose>
+								<c:when test="${m.pm_admin == 4}">관리자</c:when> 
+								<c:when test="${m.pm_admin == 3}">일반회원</c:when> 
+								<c:when test="${m.pm_admin == 1}">글쓰기불가능</c:when> 
+								<c:when test="${m.pm_admin == 0}">로그인불가능</c:when> 
+							</c:choose>
+						</td>
 						<td class="p-2 border border-slate-300">${m.pm_nickname }</td>
 						<td class="p-2 border border-slate-300">${m.pm_mail }</td>		
 					</tr>
 				</c:forEach>
 		</table>
+		</div>
 	</div>
+</div>
+
 </body>
 </html>

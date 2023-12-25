@@ -9,17 +9,20 @@ public class PostReply {
 	private String pr_content;
 	private Date pr_date;
 	
+	private String pm_nickname;
+	
 	public PostReply() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PostReply(Integer pr_no, Integer pr_pp_no, String pr_writer, String pr_content, Date pr_date) {
+	public PostReply(Integer pr_no, Integer pr_pp_no, String pr_writer, String pr_content, Date pr_date, String pm_nickname) {
 		super();
 		this.pr_no = pr_no;
 		this.pr_pp_no = pr_pp_no;
 		this.pr_writer = pr_writer;
 		this.pr_content = pr_content;
 		this.pr_date = pr_date;
+		this.pm_nickname = pm_nickname;
 	}
 
 	public Integer getPr_no() {
@@ -62,4 +65,11 @@ public class PostReply {
 		this.pr_date = pr_date;
 	}
 	
+	public String getPm_nickname() {
+		return pm_nickname;
+	}
+	
+	public void setPm_nickname(String pm_nickname) {
+		this.pm_nickname = pm_nickname;
+	}
 }

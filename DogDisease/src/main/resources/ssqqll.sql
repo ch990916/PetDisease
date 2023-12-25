@@ -121,3 +121,17 @@ select * from petdisease_post;
 select * from petdisease_reply;
 
 create table petdisease_post
+
+select
+    constraint_name,
+    table_name,
+    r_constraint_name
+from
+    user_constraints
+where
+    constraint_name like '%%';
+    
+alter table petdisease_reply
+	add constraint nickname
+		foreign key(pr_writer) references petdisease_member(pm_id)
+		on delete cascade;

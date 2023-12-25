@@ -141,9 +141,12 @@ function WriteCheck(){
 	if(emptyCheck(picture)){
 		alert("사진이 반드시 포함되어야 합니다.");		
 		return false;
-	}else{
-	return true;
 	}
+	if(notMatchFileType(picture,"jpg") && notMatchFileType(picture,"png") && notMatchFileType(picture,"jpeg") && notMatchFileType(picture,"bmp")){
+		alert("등록 파일은 반드시 그림파일(.jp(e)g, .png, .bmp)이어야 합니다.");
+		return false;
+	}
+	return true;
 }
 
 function postReplyWriteCheck(){
