@@ -18,9 +18,9 @@
 </td>
 <td>
 <table align="center"><tr>
-<td align="center"><button type="submit" id="loginButton" class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500 font-black w-90">로그인</button></td>
+<td align="center"><button type="submit" id="loginButton" class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-sm font-medium text-gray-600 ring-1 ring-inset ring-gray-500 font-black w-90">로그인</button></td>
 </tr><tr>
-<td align="center"><button type="button" class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500 font-black" onclick="location.href='join'">회원가입</button></td>
+<td align="center"><button type="button" class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-sm font-medium text-gray-600 ring-1 ring-inset ring-gray-500 font-black" onclick="location.href='join'">회원가입</button></td>
 </tr></table>
 </form>
 </tr>

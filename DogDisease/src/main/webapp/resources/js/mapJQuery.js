@@ -86,7 +86,7 @@ var map = null;
 					success : function(result){
 						$("#locationCard").empty();
 						$.each(result.documents, function(i, b){
-							var myDt = $("<dt class='font-medium text-gray-900'></dt>").text(b.place_name);
+							var myDt = $("<dt class='font-medium text-gray-900 font-bold'></dt>").text(b.place_name);
 							var myDd = $("<dd class='mt-2 text-sm text-gray-500'></dd>").text(b.address_name);
 							var myDiv = $("<div class='border-t border-gray-200 pt-4 pb-4 bg-gray-100 hover:bg-gray-200 rounded-lg'>").append(myDt, myDd).attr("onclick","moveMap("+b.y+","+b.x+");");
 

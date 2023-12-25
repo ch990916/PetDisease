@@ -17,6 +17,9 @@ a {
 .memberbutton{
 	background-color: #FFE4E3;
 }
+.loginCompleteTable{
+	font-size:15pt;
+}
 
 .loginCompleteTable img{
 	width:50px;

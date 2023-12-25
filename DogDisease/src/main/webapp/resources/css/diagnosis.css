@@ -1,0 +1,11 @@
+#progressRed::-webkit-progress-value {
+   background-color: red;
+}
+
+#progressOrange::-webkit-progress-value {
+   background-color: orange;
+}
+
+#progressYellow::-webkit-progress-value {
+   background-color: yellow;
+}

@@ -54,4 +54,84 @@ $(function(){
 	joinIdKeyEvent();
 	addressSearchEvent();
 	photoChangeEvent();
+	
+	$("#diagnosisBtn").click(function(e){
+		var imageInput = $("#pm_photo")[0];
+		var formData = new FormData();
+		formData.append("pm_photo",imageInput.files[0]);
+		if(document.getElementById("diseaseClass").value == "skin"){
+			$.ajax({
+				url : "http://localhost:5000/detect.json",
+				type : "POST",
+				data : formData,
+				dataType : "json",
+				contentType : false,
+				processData : false,
+				success : function(result){
+					$("#diagnosisResult").empty();
+					var cls = $("<h1 class='mb-10 text-gray-500 font-bold text-3xl'></h1>").text("의심 질병 : ");
+					var mySpan1 = $("<span class='font-black text-black text-3xl'></span>").text(result[0].cls);
+					cls.append(mySpan1);
+					var conf = $("<h1 class='font-bold text-gray-500 text-3xl'></h1>").text("의심도 : ");
+					var mySpan2 = null;
+					var myColor = null;
+					var bar = null;
+					if(result[0].conf >= 0.7){
+						mySpan2 = $("<span class='text-red-500 font-black text-3xl'></span>").text(result[0].conf);
+						bar = $("<progress id='progressRed' align='left' value="+ result[0].conf * 100 + " max='100'></progress>");
+					}
+					else if(result[0].conf >= 0.3){
+						mySpan2 = $("<span class='text-yellow-500 font-black text-3xl'></span>").text(result[0].conf);
+						bar = $("<progress id='progressOrange' align='left' value="+ result[0].conf * 100 + " max='100'></progress>");
+					}
+					else{
+						mySpan2 = $("<span class='text-yellow-100 font-black text-3xl'></span>").text(result[0].conf);
+						bar = $("<progress id='progressYellow' align='left' value="+ result[0].conf * 100 + " max='100'></progress>");
+					}
+					conf.append(mySpan2);
+					
+					
+					$("#diagnosisResult").append(cls, conf, bar);
+				}
+			})		
+		}
+		if(document.getElementById("diseaseClass").value == "eye"){
+			$.ajax({
+				url : "http://localhost:5000/predict.do",
+				type : "POST",
+				data : formData,
+				dataType : "json",
+				contentType : false,
+				processData : false,
+				success : function(result){
+					$("#diagnosisResult").empty();
+					var cls = $("<h1 class='mb-10 text-gray-500 font-bold'></h1>").text("의심 질병 : ");
+					var mySpan1 = $("<span class='font-black text-black'></span>").text(result.name);
+					cls.append(mySpan1);
+					var conf = $("<h1 class='font-bold text-gray-500'></h1>").text("의심도 : ");
+					var mySpan2 = null;
+					var myColor = null;
+					var bar = null;
+					if(result.conf >= 0.7){
+						mySpan2 = $("<span class='text-red-500 font-black'></span>").text(Math.round(result.conf * 100)/100);
+						bar = $("<progress id='progressRed' align='left' value="+ result.conf * 100 + " max='100'></progress>");
+					}
+					else if(result.conf >= 0.3){
+						mySpan2 = $("<span class='text-yellow-500 font-black'></span>").text(Math.round(result.conf * 100)/100);
+						bar = $("<progress id='progressOrange' align='left' value="+ result.conf * 100 + " max='100'></progress>");
+					}
+					else{
+						mySpan2 = $("<span class='text-yellow-100 font-black'></span>").text(Math.round(result.conf * 100)/100);
+						bar = $("<progress id='progressYellow' align='left' value="+ result.conf * 100 + " max='100'></progress>");
+					}
+					conf.append(mySpan2);
+					
+					
+					$("#diagnosisResult").append(cls, conf, bar);
+				}
+			})		
+		}
+		
+			
+	});
 });
