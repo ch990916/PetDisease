@@ -11,24 +11,14 @@ public class Member {
 	private Date pm_birthday;
 	private String pm_photo;
 	private String pm_mail;
-<<<<<<< HEAD
 	private BigDecimal pm_admin;
-=======
-	private Integer pm_admin;
->>>>>>> origin/branch_JinMyeong
 	
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
-<<<<<<< HEAD
 
 	public Member(String pm_id, String pm_pw, String pm_nickname, String pm_address, Date pm_birthday, String pm_photo,
 			String pm_mail, BigDecimal pm_admin) {
-=======
-	
-	public Member(String pm_id, String pm_pw, String pm_nickname, String pm_address, Date pm_birthday, String pm_photo,
-			String pm_main, Integer pm_admin) {
->>>>>>> origin/branch_JinMyeong
 		super();
 		this.pm_id = pm_id;
 		this.pm_pw = pm_pw;
@@ -36,11 +26,7 @@ public class Member {
 		this.pm_address = pm_address;
 		this.pm_birthday = pm_birthday;
 		this.pm_photo = pm_photo;
-<<<<<<< HEAD
 		this.pm_mail = pm_mail;
-=======
-		this.pm_mail = pm_main;
->>>>>>> origin/branch_JinMyeong
 		this.pm_admin = pm_admin;
 	}
 
@@ -90,25 +76,6 @@ public class Member {
 
 	public void setPm_photo(String pm_photo) {
 		this.pm_photo = pm_photo;
-<<<<<<< HEAD
-=======
-	}
-
-	public String getPm_mail() {
-		return pm_mail;
-	}
-
-	public void setPm_mail(String pm_mail) {
-		this.pm_mail = pm_mail;
-	}
-
-	public Integer getPm_admin() {
-		return pm_admin;
-	}
-
-	public void setPm_admin(Integer pm_admin) {
-		this.pm_admin = pm_admin;
->>>>>>> origin/branch_JinMyeong
 	}
 
 	public String getPm_mail() {

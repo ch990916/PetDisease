@@ -1,14 +1,14 @@
 package com.paramhwi.dogDisease.board;
 
-public class SearchInfo {
+public class SearchInfo2 {
 	private int startNum;
 	private int endNum;
 	private String searchWord;
-	public SearchInfo() {
+	public SearchInfo2() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public SearchInfo(int startNum, int endNum, String searchWord) {
+	public SearchInfo2(int startNum, int endNum, String searchWord) {
 		super();
 		this.startNum = startNum;
 		this.endNum = endNum;

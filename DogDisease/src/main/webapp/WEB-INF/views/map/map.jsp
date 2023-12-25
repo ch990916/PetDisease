@@ -9,7 +9,6 @@
 <script type="text/javascript" src="resources/js/mapJQuery.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
 <div class="normalArea">
 <h1 class="text-5xl font-black">주변 검색</h1>
 <table align="center" style="margin-top:30px;">
@@ -30,23 +29,6 @@
 
 
 </div>
-=======
-	<div class="h-screen">
-		<div class="grid grid-cols-2 grid-rows-3 bg-indigo">
-			<div class="col-auto row-auto place-self-end" id="map" style="width:500px; height:400px;"></div>
-			<div class="col-auto row-auto place-self-start" id="roadview" style="width:500px; height:400px;"></div>
-			<div class="mt-2 col-span-2 row-auto place-items-middle">
-				<input id="locationInput">
-				<select id="buildingInput">
-					<option value="" disabled="disabled" selected="selected">---항목선택---</option>
-					<option value="동물병원">동물병원</option>
-					<option value="펫샵">펫샵</option>
-				</select>
-			</div>
-			<div class="mt-2 col-span-2 grid grid-cols-2 grid-rows-auto" id="locationCard">
-			</div>
-		</div>
-	</div>
->>>>>>> origin/branch_JinMyeong
+
 </body>
 </html>

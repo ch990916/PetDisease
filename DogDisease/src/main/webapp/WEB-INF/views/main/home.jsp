@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
 	<div id="main1"></div>
 	<br><br><br><br><br><br>
 	<img src="resources/img/main1.PNG" style="width: 600px; height: 400px;" class="bg-gray-200">
@@ -34,14 +33,5 @@
           	<span class="text-2xl bg-white">주변에서 가까운 동물병원과 펫샵을 찾아보세요.</span>
     </label>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div id="main3"></div><br><br><br><br><br><br>
-
-	
-
-	
-=======
-	<div class="h-screen" align="center">
-		<div class="text-4xl text-gray-600">소개말</div>
-	</div>	
->>>>>>> origin/branch_JinMyeong
 </body>
 </html>

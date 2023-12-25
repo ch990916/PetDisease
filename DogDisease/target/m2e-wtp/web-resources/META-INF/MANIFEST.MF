@@ -1,9 +1,4 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Build-Jdk-Spec: 1.8
-=======
-Built-By: Mikang
-Build-Jdk: 1.8.0_332
->>>>>>> origin/branch_JinMyeong
 Created-By: Maven Integration for Eclipse
 

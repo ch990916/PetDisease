@@ -36,14 +36,6 @@ public class PostDAO {
 			e.printStackTrace();
 			return;
 		}
-<<<<<<< HEAD
-		Member user = (Member) req.getSession().getAttribute("user");
-		p.setHp_writer(user.getPm_id());
-		if(ss.getMapper(PostMapper.class).writePost(p) == 1) {
-			req.setAttribute("result", "글쓰기 성공");
-			allPostCount++;
-			req.getSession().setAttribute("lastToken", token);
-=======
 		
 		try {
 			String token = req.getParameter("token");
@@ -63,13 +55,12 @@ public class PostDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
->>>>>>> origin/branch_JinMyeong
 		}
 	}
 
 	public void searchPage(HttpServletRequest req) {
 		postNumInPage = ia.getPostNumInPage();
-		SearchInfo si = new SearchInfo(1, 1+postNumInPage, "");
+		SearchInfo2 si = new SearchInfo2(1, 1+postNumInPage, "");
 		List<Post> posts = ss.getMapper(PostMapper.class).searchPage(si);
 		for (Post p : posts) {
 			List<PostReply> reply = ss.getMapper(PostMapper.class).getReply(p);
@@ -80,7 +71,7 @@ public class PostDAO {
 	
 	public List<Post> loadPost(HttpServletRequest req){
 		int page = Integer.parseInt(req.getParameter("page"));
-		SearchInfo si = new SearchInfo(page,page+postNumInPage,"");
+		SearchInfo2 si = new SearchInfo2(page,page+postNumInPage,"");
 		List<Post> posts = ss.getMapper(PostMapper.class).searchPage(si);
 		for (Post p: posts) {
 			List<PostReply> reply = ss.getMapper(PostMapper.class).getReply(p);

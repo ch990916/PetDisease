@@ -82,11 +82,7 @@ public class MemberController {
 		return mDAO.MemberGet(req);
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping(value = "/admin.memberlist", method = RequestMethod.GET)
-=======
-	@RequestMapping(value="/admin.memberlist", method = RequestMethod.GET)
->>>>>>> origin/branch_JinMyeong
 	public String memberList(HttpServletRequest req) {
 		mDAO.checkLogin(req);
 		mDAO.adminMemberGet(req);
@@ -94,11 +90,7 @@ public class MemberController {
 		return "main/index";
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping(value = "/admin.memberInfo", method = RequestMethod.GET)
-=======
-	@RequestMapping(value="/admin.memberInfo", method=RequestMethod.GET)
->>>>>>> origin/branch_JinMyeong
 	public String memberInfoAdmin(HttpServletRequest req) {
 		mDAO.checkLogin(req);
 		mDAO.adminMemberInfo(req);
@@ -106,24 +98,17 @@ public class MemberController {
 		return "main/index";
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping(value = "/admin.changeAdmin", method = RequestMethod.POST)
-=======
-	@RequestMapping(value="/admin.changeAdmin", method=RequestMethod.POST)
->>>>>>> origin/branch_JinMyeong
 	public String changeAdmin(HttpServletRequest req) {
 		mDAO.checkLogin(req);
 		mDAO.changeAdmin(req);
 		return memberList(req);
 	}
-<<<<<<< HEAD
-=======
-	
+
 	@RequestMapping(value="/admin.deleteMember", method=RequestMethod.POST)
 	public String adminDeleteMember(Member m, HttpServletRequest req) {
 		mDAO.checkLogin(req);
 		mDAO.adminMemberDelete(m, req);
 		return memberList(req);
 	}
->>>>>>> origin/branch_JinMyeong
 }

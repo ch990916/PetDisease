@@ -5,21 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
-	<table>
-		<c:forEach var="m" items="${members }">
-		<tr>
-			<td><a href="admin.memberInfo?id=${m.pm_id }">${m.pm_id }</a></td>
-			<td>${m.pm_nickname }</td>
-			<td>${m.pm_address }</td>
-			<td>${m.pm_mail }</td>		
-		</tr>
-		</c:forEach>
-
-	</table>
-=======
 	<div class="h-screen">
 		<h1 class="text-2xl font-bold">회원 목록</h1>
 		<table class="border-collapse border border-slate-400 mt-10 min-h-4/6 shadow-lg">
@@ -37,6 +26,5 @@
 				</c:forEach>
 		</table>
 	</div>
->>>>>>> origin/branch_JinMyeong
 </body>
 </html>

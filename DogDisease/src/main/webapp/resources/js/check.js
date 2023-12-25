@@ -1,11 +1,7 @@
 function joinCheck(){
-<<<<<<< HEAD
 	var nameField = document.joinForm.pm_nickname;
 	var jumin1Field = document.joinForm.pm_jumin1;
 	var jumin2Field = document.joinForm.pm_jumin2;
-=======
-	var nameField = document.joinForm.pm_name;
->>>>>>> origin/branch_JinMyeong
 	var idField = document.joinForm.pm_id;
 	var pwField = document.joinForm.pm_pw;
 	var pwckField = document.joinForm.pm_pwck;
@@ -13,10 +9,7 @@ function joinCheck(){
 	var address2Field = document.joinForm.pm_address2;
 	var address3Field = document.joinForm.pm_address3;
 	var photoField = document.joinForm.pm_photo;
-<<<<<<< HEAD
 	var mailField = document.joinForm.pm_mail;
-=======
->>>>>>> origin/branch_JinMyeong
 	
 	
 	if(emptyCheck(nameField)){
@@ -94,11 +87,7 @@ function loginCheck(){
 	return true;
 }
 
-<<<<<<< HEAD
 function memberUpdateCheck(){
-=======
-function updateCheck(){
->>>>>>> origin/branch_JinMyeong
 	var nameField = document.memberInfoForm.pm_nickname;
 	var pwField = document.memberInfoForm.pm_pw;
 	var pwckField = document.memberInfoForm.pm_pwck;
@@ -144,15 +133,10 @@ function updateCheck(){
 	return true;
 }
 
-<<<<<<< HEAD
-function noticeWriteCheck(){
-	var titleField = document.noticeWriteForm.pn_title;
-	var contentField = document.noticeWriteForm.pn_content;
-=======
+
 function WriteCheck(){
 	var picture = document.postWriteForm.pp_picture;
 	var content = document.postWriteForm.pp_content;
->>>>>>> origin/branch_JinMyeong
 	
 	if(emptyCheck(picture)){
 		alert("사진이 반드시 포함되어야 합니다.");		
@@ -173,7 +157,6 @@ function postReplyWriteCheck(){
 	return true;
 }
 
-<<<<<<< HEAD
 function noticeDeleteCheck(){
 	confirm("삭제하시겠습니까?");
 	return true;
@@ -186,7 +169,9 @@ function diagnosisPhotoCheck(){
 		alert("사진을 선택해주세요");
 		photoField.value = "";
 		photoField.focus();		
-=======
+	}
+	
+}
 function deletePostCheck(){
 	if(confirm("정말로 삭제를 진행하시겠습니까?\n 이 행동은 되둘릴 수 없습니다.")){
 		return true;
@@ -200,7 +185,6 @@ function noticeWriteCheck(){
 	
 	if(emptyCheck(title) || emptyCheck(content)){
 		alert("제목과 내용을 모두 입력하여야 합니다.");
->>>>>>> origin/branch_JinMyeong
 		return false;
 	}
 	return true;

@@ -7,6 +7,8 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 <script type="text/javascript" src="resources/js/check.js"></script>
 <script type="text/javascript">
 	var page=5;

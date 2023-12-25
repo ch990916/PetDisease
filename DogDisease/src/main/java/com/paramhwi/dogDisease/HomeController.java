@@ -13,12 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-<<<<<<< HEAD
-=======
 
 import com.paramhwi.dogDisease.board.PostDAO;
 import com.paramhwi.dogDisease.member.Member;
->>>>>>> origin/branch_JinMyeong
 import com.paramhwi.dogDisease.member.MemberDAO;
 import com.paramhwi.dogDisease.notice.NoticeDAO;
 
@@ -43,15 +40,10 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest req) {
 		if(firstReq) {
-<<<<<<< HEAD
 			nDAO.getAllNoticeCount("");
 			firstReq = false;
 		}
 		nDAO.searchSessionReset(req);
-=======
-			firstReq = false;
-		}
->>>>>>> origin/branch_JinMyeong
 		mDAO.checkLogin(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "main/index";
