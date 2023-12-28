@@ -1,0 +1,8 @@
+test: "/content/Relabel_Dog/9/test/images"
+train: "/content/Relabel_Dog/9/train/images"
+val: "/content/Relabel_Dog/9/val/images"
+nc: 2
+names:
+  0: "No disease"
+  1: "nuclear hardening"
+  

@@ -1,0 +1,7 @@
+test: "/content/Relabel_Dog/3/test/images"
+train: "/content/Relabel_Dog/3/train/images"
+val: "/content/Relabel_Dog/3/val/images"
+nc: 2
+names:
+  0: "No disease"
+  1: "Non-ulcerative corneal disease"

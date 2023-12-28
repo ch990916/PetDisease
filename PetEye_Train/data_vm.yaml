@@ -1,0 +1,17 @@
+test: "/content/Relabel_Dog/test/images"
+train: "/content/Relabel_Dog/train/images"
+val: "/content/Relabel_Dog/val/images"
+nc: 11
+names:
+  0: "No disease"
+  1: "Conjunctivitis"
+  2: "Ulcerative corneal disease"
+  3: "Cataract"
+  4: "Non-ulcerative corneal disease"
+  5: "Pigmented keratitis"
+  6: "Entropion"
+  7: "Blepharitis"
+  8: "Eyelid tumor"
+  9: "Galactorrhea"
+  10: "nuclear hardening"
+  

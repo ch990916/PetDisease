@@ -1,0 +1,7 @@
+test: "/content/Relabel_Dog/5/test/images"
+train: "/content/Relabel_Dog/5/train/images"
+val: "/content/Relabel_Dog/5/val/images"
+nc: 2
+names:
+  0: "No disease"
+  1: "Entropion"
